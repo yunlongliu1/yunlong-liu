@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SANIKB — Factory-Direct Ceramic Sanitaryware & Fixtures Partner</title>
+<meta name="description" content="SANIKB is a ceramic sanitaryware factory and full-service fixtures partner for hotel, construction and OEM projects across the US, Canada, Australia and Europe. cUPC verifiable. Free tooling at 300 MOQ, 7-day samples, 30–45 day lead time." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============ Design tokens ============ */
+:root{
+  --bg:#ffffff;
+  --paper:#f6f4f1;      /* warm stone */
+  --paper-2:#efece7;
+  --ink:#1b1a18;        /* near-black warm */
+  --ink-soft:#54514c;
+  --line:#e3ded7;
+  --accent:#9a7b4f;     /* warm brass/clay */
+  --accent-deep:#7c6240;
+  --white:#fff;
+  --radius:14px;
+  --maxw:1200px;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --shadow:0 18px 50px -24px rgba(27,26,24,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  font-weight:400;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent-deep);font-weight:600;margin-bottom:18px;
+}
+h1,h2,h3{font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.serif{font-family:var(--serif);font-weight:500;letter-spacing:0}
+.section{padding:108px 0}
+.section--tight{padding:84px 0}
+.lead{font-size:19px;color:var(--ink-soft);max-width:60ch;font-weight:300}
+
+/* ============ Buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:14.5px;font-weight:600;letter-spacing:.01em;
+  padding:15px 28px;border-radius:50px;cursor:pointer;
+  border:1px solid transparent;transition:.25s ease;white-space:nowrap;
+}
+.btn--primary{background:var(--ink);color:var(--white)}
+.btn--primary:hover{background:var(--accent-deep);transform:translateY(-1px)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn--ghost:hover{border-color:var(--ink)}
+.btn--light{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.4);backdrop-filter:blur(6px)}
+.btn--light:hover{background:rgba(255,255,255,.22)}
+.btn .arr{transition:transform .25s ease}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* ============ Header ============ */
+.header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid transparent;transition:border-color .3s, box-shadow .3s;
+}
+.header.scrolled{border-color:var(--line);box-shadow:0 6px 24px -18px rgba(0,0,0,.4)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:.16em;color:var(--ink)}
+.brand small{font-family:var(--sans);font-size:9px;letter-spacing:.28em;display:block;color:var(--ink-soft);font-weight:600;margin-top:-4px}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:14px;color:var(--ink-soft);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:18px}
+.hamburger{display:none;background:none;border:0;cursor:pointer;width:30px;height:24px;position:relative}
+.hamburger span{position:absolute;left:0;height:2px;width:100%;background:var(--ink);transition:.3s}
+.hamburger span:nth-child(1){top:3px}
+.hamburger span:nth-child(2){top:11px}
+.hamburger span:nth-child(3){top:19px}
+.hamburger.open span:nth-child(1){top:11px;transform:rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
+
+/* ============ Hero ============ */
+.hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero__img{position:absolute;inset:0}
+.hero__img img{width:100%;height:100%;object-fit:cover}
+.hero__img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,18,16,.30) 0%,rgba(20,18,16,.12) 32%,rgba(20,18,16,.72) 100%);}
+.hero__inner{position:relative;z-index:2;width:100%;padding:0 0 72px}
+.hero .eyebrow{color:#e8d8bf}
+.hero h1{font-size:clamp(40px,6vw,76px);max-width:18ch;margin-bottom:24px;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.hero p{font-size:clamp(16px,2vw,20px);max-width:54ch;color:rgba(255,255,255,.92);font-weight:300;margin-bottom:34px}
+.hero__actions{display:flex;gap:16px;flex-wrap:wrap}
+.hero__trust{display:flex;gap:28px;flex-wrap:wrap;margin-top:46px;padding-top:26px;border-top:1px solid rgba(255,255,255,.22);font-size:13.5px;color:rgba(255,255,255,.85)}
+.hero__trust b{color:#fff;font-weight:600}
+.hero__trust .dot{color:#e8d8bf}
+
+/* ============ Promise band ============ */
+.promise{background:var(--ink);color:#fff}
+.promise .grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.promise .cell{padding:54px 40px;border-left:1px solid rgba(255,255,255,.12)}
+.promise .cell:first-child{border-left:0}
+.promise .num{font-family:var(--serif);font-size:clamp(40px,5vw,60px);line-height:1;color:#fff;margin-bottom:14px}
+.promise .num span{font-size:.42em;color:var(--accent);vertical-align:middle;margin-left:6px;letter-spacing:.05em}
+.promise .cap{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d2c2a4;font-weight:600;margin-bottom:8px}
+.promise .desc{font-size:14.5px;color:rgba(255,255,255,.72);font-weight:300;max-width:30ch}
+
+/* ============ Section head ============ */
+.shead{max-width:760px;margin-bottom:56px}
+.shead h2{font-size:clamp(30px,4vw,48px);margin-bottom:18px}
+.shead.center{margin-left:auto;margin-right:auto;text-align:center}
+
+/* ============ Certifications ============ */
+.certs{background:var(--paper)}
+.cert-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:stretch}
+.cert-hero{
+  background:var(--ink);color:#fff;border-radius:var(--radius);padding:46px;
+  display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);
+}
+.cert-hero .badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);
+  font-size:34px;font-weight:600;letter-spacing:.04em;border:2px solid var(--accent);
+  color:#fff;padding:10px 22px;border-radius:10px;align-self:flex-start;margin-bottom:28px}
+.cert-hero h3{font-size:26px;margin-bottom:14px}
+.cert-hero p{color:rgba(255,255,255,.78);font-weight:300;font-size:15px;margin-bottom:26px;max-width:40ch}
+.cert-hero .verify{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:#e8d8bf}
+.cert-hero .verify .tick{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#1b1a18;display:grid;place-items:center;font-size:12px}
+.cert-side{display:grid;grid-template-rows:repeat(3,1fr);gap:22px}
+.cert-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px;display:flex;align-items:center;gap:22px}
+.cert-card .mark{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--ink);
+  min-width:118px;border-right:1px solid var(--line);padding-right:22px}
+.cert-card .mark small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;margin-top:4px}
+.cert-card p{font-size:14px;color:var(--ink-soft);font-weight:300}
+
+/* ============ Capabilities ============ */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.cap-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;transition:.3s ease;display:flex;flex-direction:column}
+.cap-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d8d0c5}
+.cap-card .ph{aspect-ratio:16/11;overflow:hidden}
+.cap-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.cap-card:hover .ph img{transform:scale(1.05)}
+.cap-card .body{padding:30px 28px 34px;flex:1;display:flex;flex-direction:column}
+.cap-card h3{font-size:21px;margin-bottom:12px}
+.cap-card .tag{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;margin-bottom:16px}
+.cap-card p{font-size:14.5px;color:var(--ink-soft);font-weight:300;margin-bottom:18px}
+.cap-card ul{list-style:none;margin-top:auto;display:flex;flex-wrap:wrap;gap:8px}
+.cap-card li{font-size:12.5px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);padding:5px 12px;border-radius:50px}
+
+/* ============ Why / split ============ */
+.why{background:var(--paper)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.why-media{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow)}
+.why-media img{width:100%;height:100%;object-fit:cover}
+.why-list{margin-top:30px;display:grid;gap:22px}
+.why-list .item{display:flex;gap:18px}
+.why-list .ico{flex:0 0 44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--accent-deep)}
+.why-list h4{font-size:16px;margin-bottom:4px}
+.why-list p{font-size:14px;color:var(--ink-soft);font-weight:300}
+
+/* ============ Markets ============ */
+.markets .m-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.m-card{border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;background:#fff;transition:.3s}
+.m-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.m-card .flag{font-size:30px;margin-bottom:18px;line-height:1}
+.m-card h3{font-size:19px;margin-bottom:8px}
+.m-card .cert{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--accent-deep);text-transform:uppercase}
+.m-card p{font-size:13.5px;color:var(--ink-soft);font-weight:300;margin-top:10px}
+
+/* ============ Process ============ */
+.process{background:var(--ink);color:#fff}
+.process .shead h2{color:#fff}
+.process .shead .lead{color:rgba(255,255,255,.7)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s}
+.step{padding:34px 26px 30px;border-top:2px solid rgba(255,255,255,.16);position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--serif);font-size:30px;color:var(--accent);display:block;margin-bottom:18px}
+.step h4{font-size:16.5px;margin-bottom:10px}
+.step p{font-size:13.5px;color:rgba(255,255,255,.66);font-weight:300}
+.step .pill{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#1b1a18;background:var(--accent);padding:4px 11px;border-radius:50px}
+
+/* ============ Quote / form ============ */
+.quote{background:linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 100%)}
+.quote-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.quote-copy h2{font-size:clamp(30px,4vw,46px);margin-bottom:18px}
+.quote-copy .lead{margin-bottom:30px}
+.quote-points{display:grid;gap:16px;margin-top:10px}
+.quote-points .qp{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft)}
+.quote-points .qp .tick{flex:0 0 22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px;margin-top:1px}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:40px;box-shadow:var(--shadow)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--ink);margin-bottom:8px}
+.field input,.field select,.field textarea{
+  width:100%;font-family:inherit;font-size:14.5px;color:var(--ink);
+  padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:var(--bg);transition:.2s;
+}
+.field textarea{min-height:104px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(154,123,79,.13)}
+.form-card .btn{width:100%;justify-content:center;margin-top:6px}
+.form-note{font-size:12px;color:var(--ink-soft);text-align:center;margin-top:16px;font-weight:300}
+.form-thanks{display:none;text-align:center;padding:30px 10px}
+.form-thanks .big{font-family:var(--serif);font-size:30px;margin-bottom:12px}
+.form-thanks p{color:var(--ink-soft);font-weight:300}
+.form-thanks.show{display:block}
+.form-card.sent .form-body{display:none}
+
+/* ============ Footer ============ */
+.footer{background:#141312;color:rgba(255,255,255,.62);padding:72px 0 38px;font-size:14px;font-weight:300}
+.footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer .brand{color:#fff;margin-bottom:14px}
+.footer .brand small{color:rgba(255,255,255,.5)}
+.footer p{max-width:42ch}
+.footer h5{color:#fff;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:18px}
+.footer a{display:block;color:rgba(255,255,255,.62);margin-bottom:10px;transition:color .2s}
+.footer a:hover{color:#fff}
+.footer .certline{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px}
+.footer .certline span{font-family:var(--serif);font-size:15px;color:rgba(255,255,255,.8);letter-spacing:.04em;border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:8px}
+.footer .bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px;font-size:12.5px;color:rgba(255,255,255,.45)}
+
+/* ============ Reveal animation ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ Responsive ============ */
+@media(max-width:1024px){
+  .quote-grid,.why-grid{grid-template-columns:1fr;gap:44px}
+  .cert-grid{grid-template-columns:1fr}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .markets .m-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .section{padding:74px 0}
+  .nav-links{position:fixed;inset:74px 0 auto 0;background:#fff;flex-direction:column;gap:0;
+    padding:8px 0 18px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .35s ease;box-shadow:var(--shadow)}
+  .nav-links.open{transform:none}
+  .nav-links a{width:100%;padding:14px 28px;font-size:16px}
+  .nav-cta .btn--primary{display:none}
+  .hamburger{display:block}
+  .promise .grid{grid-template-columns:1fr}
+  .promise .cell{border-left:0;border-top:1px solid rgba(255,255,255,.12)}
+  .promise .cell:first-child{border-top:0}
+  .cap-grid,.markets .m-grid,.form-row{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .footer .top{grid-template-columns:1fr}
+  .form-card{padding:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand">SANIKB<small>SANITARYWARE &amp; FIXTURES</small></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#promise">Service</a>
+      <a href="#certs">Certifications</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#markets">Markets</a>
+      <a href="#process">Process</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#quote" class="btn btn--primary">Request a Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <!-- PLACEHOLDER IMAGE — swap with SANIKB project/product photography -->
+  <div class="hero__img">
+    <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=2000&q=80" alt="Modern ceramic sanitaryware in a designed bathroom interior" />
+  </div>
+  <div class="hero__inner">
+    <div class="wrap">
+      <p class="eyebrow">Factory-Direct · B2B Only</p>
+      <h1 class="serif">Ceramic sanitaryware, engineered around your project.</h1>
+      <p>From our own ceramic factory to a complete fixtures program — SANIKB is the single-source partner that turns specifications into delivered, certified product. Built for the way professional buyers actually work.</p>
+      <div class="hero__actions">
+        <a href="#quote" class="btn btn--light">Request a Quote <span class="arr">→</span></a>
+        <a href="#promise" class="btn btn--light">See our service model</a>
+      </div>
+      <div class="hero__trust">
+        <span><b>cUPC</b> certified <span class="dot">·</span> verifiable listing</span>
+        <span>Serving <b>USA · Canada · Australia · Europe</b></span>
+        <span><b>7-day</b> samples <span class="dot">·</span> <b>30–45 day</b> lead time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMISE BAND ============ -->
+<section class="promise" id="promise">
+  <div class="wrap">
+    <div class="grid">
+      <div class="cell reveal">
+        <div class="num">300<span>MOQ</span></div>
+        <div class="cap">Free Tooling</div>
+        <p class="desc">Reach 300 units and we open your mold at zero tooling cost — your design, your spec, no setup fee.</p>
+      </div>
+      <div class="cell reveal">
+        <div class="num">7<span>DAYS</span></div>
+        <div class="cap">Samples Delivered</div>
+        <p class="desc">Physical samples on your desk within seven days, so approvals never stall your project timeline.</p>
+      </div>
+      <div class="cell reveal">
+        <div class="num">30–45<span>DAYS</span></div>
+        <div class="cap">Production Lead Time</div>
+        <p class="desc">Committed, repeatable lead times from PO to ready-to-ship — planned, tracked and met.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section class="section certs" id="certs">
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="eyebrow">Compliance you can verify</p>
+      <h2 class="serif">Certified for the markets you sell into.</h2>
+      <p class="lead">Compliance is non-negotiable in professional procurement. Our products carry the marks your specifiers, plumbers and code officials require — and our cUPC listing can be checked independently before you ever place an order.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-hero reveal">
+        <div>
+          <span class="badge">cUPC</span>
+          <h3 class="serif">Independently verifiable certification.</h3>
+          <p>Our ceramic sanitaryware is cUPC certified for the US and Canadian plumbing codes. The listing is public — look it up and confirm it yourself before you commit.</p>
+        </div>
+        <span class="verify"><span class="tick">✓</span> Ask us for the listing number to verify</span>
+      </div>
+      <div class="cert-side">
+        <div class="cert-card reveal">
+          <div class="mark">WaterMark<small>Australia</small></div>
+          <p>Approved to Australian plumbing requirements for confident supply into the AU market.</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="mark">CE · EN 997<small>Europe</small></div>
+          <p>Conformity to European sanitaryware standards for WC pans and connected fittings.</p>
+        </div>
+        <div class="cert-card reveal">
+          <div class="mark">ISO 9001<small>Quality</small></div>
+          <p>Factory quality-management system governing every batch, from clay body to final QC.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPABILITIES ============ -->
+<section class="section" id="capabilities">
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="eyebrow">What we build for</p>
+      <h2 class="serif">Three ways professional buyers work with SANIKB.</h2>
+      <p class="lead">Whether you are fitting out a property, supplying a build, or selling under your own name, we run the whole program — from spec and sampling to certified delivery.</p>
+    </div>
+    <div class="cap-grid">
+      <article class="cap-card reveal">
+        <!-- PLACEHOLDER IMAGE — hotel bathroom / hospitality -->
+        <div class="ph"><img src="https://images.unsplash.com/photo-1564540583246-934409427776?auto=format&fit=crop&w=1100&q=80" alt="Hotel bathroom with premium fixtures"></div>
+        <div class="body">
+          <span class="tag">Hotel &amp; Hospitality · FF&amp;E</span>
+          <h3 class="serif">Hospitality fit-out</h3>
+          <p>Consistent quality across hundreds of keys, matched finishes, and dependable replenishment for refurbishment programs.</p>
+          <ul><li>Boutique hotels</li><li>Resorts</li><li>Branded residences</li><li>Refurb rollouts</li></ul>
+        </div>
+      </article>
+      <article class="cap-card reveal">
+        <!-- PLACEHOLDER IMAGE — construction / development -->
+        <div class="ph"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1100&q=80" alt="Residential construction development"></div>
+        <div class="body">
+          <span class="tag">Construction · Builder Supply</span>
+          <h3 class="serif">Project &amp; builder supply</h3>
+          <p>Volume sanitaryware and fixtures scheduled to your construction phases, with the certifications your inspectors expect.</p>
+          <ul><li>Multifamily</li><li>Developers</li><li>Plumbing wholesalers</li><li>Spec builds</li></ul>
+        </div>
+      </article>
+      <article class="cap-card reveal">
+        <!-- PLACEHOLDER IMAGE — product / branding studio -->
+        <div class="ph"><img src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1100&q=80" alt="Studio product photography of a white ceramic basin"></div>
+        <div class="body">
+          <span class="tag">OEM · Private Label</span>
+          <h3 class="serif">Your brand, our factory</h3>
+          <p>We produce to your design, your packaging and your standards — a discreet manufacturing partner behind established fixture brands and retail programs.</p>
+          <ul><li>Brand OEM</li><li>Retail programs</li><li>Custom molds</li><li>Private label</li></ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="section why" id="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-media reveal">
+        <!-- PLACEHOLDER IMAGE — factory / craftsmanship -->
+        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1100&q=80" alt="Manufacturing and quality inspection">
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Why SANIKB</p>
+        <h2 class="serif" style="font-size:clamp(28px,4vw,44px)">One partner for the whole fixture scope.</h2>
+        <p class="lead">You shouldn't have to coordinate a dozen suppliers to outfit a single project. We hold the manufacturing, the compliance and the program management in one place — so you brief once and we deliver the whole package.</p>
+        <div class="why-list">
+          <div class="item">
+            <div class="ico">◈</div>
+            <div><h4>Factory-direct control</h4><p>Pricing, quality and timelines come straight from the source — no layers, no surprises.</p></div>
+          </div>
+          <div class="item">
+            <div class="ico">⊞</div>
+            <div><h4>Single-source convenience</h4><p>Your full project fixture list, consolidated under one accountable partner and one point of contact.</p></div>
+          </div>
+          <div class="item">
+            <div class="ico">⚑</div>
+            <div><h4>Service that holds the schedule</h4><p>Fast samples, free tooling at volume and committed lead times keep your project moving.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKETS ============ -->
+<section class="section markets" id="markets">
+  <div class="wrap">
+    <div class="shead center reveal">
+      <p class="eyebrow">Where we ship</p>
+      <h2 class="serif">Built for four demanding markets.</h2>
+      <p class="lead" style="margin:0 auto">Each market has its own code and certification. We supply to all four — with the right marks on the product before it leaves the factory.</p>
+    </div>
+    <div class="m-grid">
+      <div class="m-card reveal">
+        <div class="flag">🇺🇸</div>
+        <h3 class="serif">United States</h3>
+        <span class="cert">cUPC certified</span>
+        <p>Code-compliant sanitaryware for US contractors, developers and distributors.</p>
+      </div>
+      <div class="m-card reveal">
+        <div class="flag">🇨🇦</div>
+        <h3 class="serif">Canada</h3>
+        <span class="cert">cUPC certified</span>
+        <p>The same verifiable certification carried across the Canadian plumbing market.</p>
+      </div>
+      <div class="m-card reveal">
+        <div class="flag">🇦🇺</div>
+        <h3 class="serif">Australia</h3>
+        <span class="cert">WaterMark approved</span>
+        <p>Product approved to Australian plumbing requirements for compliant supply.</p>
+      </div>
+      <div class="m-card reveal">
+        <div class="flag">🇪🇺</div>
+        <h3 class="serif">Europe</h3>
+        <span class="cert">CE · EN 997</span>
+        <p>Conformity to European sanitaryware standards for the EU and UK trade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="eyebrow">How it works</p>
+      <h2 class="serif">A service model designed around your timeline.</h2>
+      <p class="lead">Every commitment on this page is a step in the same predictable process — from first inquiry to delivered goods.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h4>Inquiry &amp; spec</h4><p>Share your drawings, finishes and target market. We confirm feasibility and certification fit.</p></div>
+      <div class="step reveal"><h4>Sample</h4><p>Physical samples shipped for sign-off.</p><span class="pill">7 days</span></div>
+      <div class="step reveal"><h4>Tooling</h4><p>We open your mold to your exact design.</p><span class="pill">Free at 300 MOQ</span></div>
+      <div class="step reveal"><h4>Production &amp; QC</h4><p>Manufactured under ISO 9001, inspected batch by batch before release.</p></div>
+      <div class="step reveal"><h4>Delivery</h4><p>Certified product packed and shipped on a committed schedule.</p><span class="pill">30–45 days</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE / FORM ============ -->
+<section class="section quote" id="quote">
+  <div class="wrap">
+    <div class="quote-grid">
+      <div class="quote-copy reveal">
+        <p class="eyebrow">Start a project</p>
+        <h2 class="serif">Request a quote.</h2>
+        <p class="lead">Tell us about your project and market. We'll come back with pricing, certification details and a sample plan — usually within one business day.</p>
+        <div class="quote-points">
+          <div class="qp"><span class="tick">✓</span> Free tooling once you reach 300 units</div>
+          <div class="qp"><span class="tick">✓</span> Samples delivered in 7 days</div>
+          <div class="qp"><span class="tick">✓</span> Committed 30–45 day lead times</div>
+          <div class="qp"><span class="tick">✓</span> cUPC, WaterMark, CE / EN 997, ISO 9001</div>
+        </div>
+      </div>
+
+      <div class="form-card reveal" id="formCard">
+        <form class="form-body" id="quoteForm" novalidate>
+          <div class="form-row">
+            <div class="field"><label for="name">Full name</label><input id="name" type="text" placeholder="Your name" required></div>
+            <div class="field"><label for="company">Company</label><input id="company" type="text" placeholder="Company name" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="market">Target market</label>
+              <select id="market" required>
+                <option value="" disabled selected>Select market</option>
+                <option>United States</option><option>Canada</option><option>Australia</option>
+                <option>Europe / UK</option><option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="segment">Project type</label>
+              <select id="segment" required>
+                <option value="" disabled selected>Select type</option>
+                <option>Hotel / Hospitality (FF&amp;E)</option>
+                <option>Construction / Builder supply</option>
+                <option>OEM / Private label</option>
+                <option>Distribution / Wholesale</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="email">Work email</label><input id="email" type="email" placeholder="you@company.com" required></div>
+            <div class="field"><label for="qty">Estimated quantity</label><input id="qty" type="text" placeholder="e.g. 1,200 units"></div>
+          </div>
+          <div class="field"><label for="msg">Project details</label><textarea id="msg" placeholder="Products, specifications, certifications, timeline…"></textarea></div>
+          <button type="submit" class="btn btn--primary">Send request <span class="arr">→</span></button>
+          <p class="form-note">B2B inquiries only · We reply within one business day.</p>
+        </form>
+        <div class="form-thanks" id="formThanks">
+          <div class="big serif">Thank you — request received.</div>
+          <p>Our team will review your project and reply within one business day with pricing, certification details and a sample plan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="brand" style="font-family:var(--serif);font-size:26px;letter-spacing:.16em">SANIKB<small style="display:block;font-family:var(--sans);font-size:9px;letter-spacing:.28em;margin-top:-2px">SANITARYWARE &amp; FIXTURES</small></div>
+        <p>Factory-direct ceramic sanitaryware and a complete fixtures program for hospitality, construction and OEM partners worldwide.</p>
+        <div class="certline">
+          <span>cUPC</span><span>WaterMark</span><span>CE · EN 997</span><span>ISO 9001</span>
+        </div>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="#promise">Service model</a>
+        <a href="#certs">Certifications</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#markets">Markets</a>
+        <a href="#process">Process</a>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <a href="#quote">Request a quote</a>
+        <a href="mailto:sales@sanikb.com">sales@sanikb.com</a>
+        <a href="https://sanikb.com">sanikb.com</a>
+        <p style="margin-top:8px">B2B inquiries only.</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 SANIKB. All rights reserved.</span>
+      <span>Ceramic sanitaryware &amp; fixtures · USA · Canada · Australia · Europe</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky header shadow
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>10));
+
+// Mobile nav
+const burger=document.getElementById('hamburger'),links=document.getElementById('navLinks');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');links.classList.toggle('open');});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');links.classList.remove('open');}));
+
+// Reveal on scroll
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Form (visual only)
+const form=document.getElementById('quoteForm'),card=document.getElementById('formCard'),thanks=document.getElementById('formThanks');
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  if(!form.checkValidity()){form.reportValidity();return;}
+  card.classList.add('sent');thanks.classList.add('show');
+});
+</script>
+</body>
+</html>
