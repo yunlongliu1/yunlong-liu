@@ -9,38 +9,11 @@
 //   SHOPIFY_STORE_DOMAIN  r8hi1q-rx.myshopify.com   <- API domain, NOT nozloo.myshopify.com
 //   SHOPIFY_API_VERSION   2024-10
 
-import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { loadDotEnv } from '../lib/dotenv.mjs';
 
-// --- tiny .env loader (no dependency) ---------------------------------------
-// Reads <repo-root>/.env and populates process.env for keys not already set.
-function loadDotEnv() {
-  const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-  let text;
-  try {
-    text = readFileSync(join(root, '.env'), 'utf8');
-  } catch {
-    return; // no .env file — rely on the real environment
-  }
-  for (const rawLine of text.split('\n')) {
-    const line = rawLine.trim();
-    if (!line || line.startsWith('#')) continue;
-    const eq = line.indexOf('=');
-    if (eq === -1) continue;
-    const key = line.slice(0, eq).trim();
-    let val = line.slice(eq + 1).trim();
-    if (
-      (val.startsWith('"') && val.endsWith('"')) ||
-      (val.startsWith("'") && val.endsWith("'"))
-    ) {
-      val = val.slice(1, -1);
-    }
-    if (!(key in process.env)) process.env[key] = val;
-  }
-}
-
-loadDotEnv();
+loadDotEnv(join(dirname(fileURLToPath(import.meta.url)), '..'));
 
 const DEFAULTS = {
   storeDomain: 'r8hi1q-rx.myshopify.com',

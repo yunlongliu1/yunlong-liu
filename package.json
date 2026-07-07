@@ -7,7 +7,10 @@
   "scripts": {
     "shopify": "node shopify/cli.mjs",
     "shopify:test": "node shopify/cli.mjs test",
-    "shopify:shop": "node shopify/cli.mjs shop"
+    "shopify:shop": "node shopify/cli.mjs shop",
+    "gsc": "node gsc/cli.mjs",
+    "gsc:sites": "node gsc/cli.mjs sites",
+    "gsc:query": "node gsc/cli.mjs query"
   },
   "engines": {
     "node": ">=18"
