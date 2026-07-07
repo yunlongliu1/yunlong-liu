@@ -1,0 +1,15 @@
+{
+  "name": "nozloo-shopify",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NOZLOO storefront and Shopify Admin API tooling",
+  "scripts": {
+    "shopify": "node shopify/cli.mjs",
+    "shopify:test": "node shopify/cli.mjs test",
+    "shopify:shop": "node shopify/cli.mjs shop"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
