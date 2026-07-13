@@ -115,3 +115,11 @@ SEO：seo.description/global.description_tag = “…grooved and smooth fronts�
 - N1: P1 纹理面同页矛盾 —— 滑块 "vertical flutes"(竖) vs 正文 "horizontal ridges"(横)。竖/横二选一（按实物）。
 - N2: P3 小标题 "Vertical Detail" vs P3 自定义 "a single horizontal groove"(横)。竖/横不一致，需按实物定。
 - N3: P3 残留一句泛指比较 "than a flat apron design"（非本品侧标签，故意保留；如要极致统一可改 smooth）。
+
+## 变更执行记录（09 — N1/N2 已改，MAIN 主题，线上已生效并验证）
+用户确认实物：N1(P1)=竖；N2(P3)=一条横+两条竖。
+- P1 模板 product.nz103w3320.json：FAQ "horizontal ridges"→"vertical ridges"（滑块 "Vertical flutes" 本就正确，保留）→ 全页统一竖。
+- P3 模板 product.105w3020.json：滑块 side_b_desc "A single horizontal groove adds subtle depth."→"A horizontal groove and two vertical grooves add subtle depth."（区块标题 "Vertical Detail" 保留）。
+- 从当前线上版本叠加改动，未覆盖 07 的 Flat→Smooth（已校验 Smooth Side 仍在；P3 grooved 仍在）。
+- 验证：主题存储文件回读 + 线上页面回读（P3 首次因 CDN 缓存滞后，第二次已翻新）均确认生效。
+状态：N1/N2 完成。coming-soon(H1) 按用户指示暂不处理。M2/M3/L*/V* 仍待定。
