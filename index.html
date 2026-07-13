@@ -6,6 +6,46 @@
 <title>SANIKB — Kitchen &amp; Bath OEM/ODM Manufacturer · Foshan Factory Since 2000</title>
 <meta name="description" content="SANIKB is a Foshan kitchen & bath OEM/ODM manufacturer with its own ceramic plant. B2B trade only. cUPC verifiable. Free tooling at 300 MOQ, 7-day samples, 30–45 day lead time. Serving North America, Australia and Europe." />
 
+<!-- ============================================================= -->
+<!-- Google Ads 账户关联 · Google tag (gtag.js)                      -->
+<!--                                                               -->
+<!-- 用途：把本网站关联到你的 Google Ads 账户，用于「再营销受众」和   -->
+<!--       「转化跟踪」。这一步就是所谓的「链接到 Google Ads 账户」。  -->
+<!--                                                               -->
+<!-- ⚠️ 注意：这里要填的不是「开发者令牌 (Developer Token)」。         -->
+<!--    开发者令牌是给 Google Ads API 服务端调用用的机密凭据，        -->
+<!--    绝不能放到网页里。                                          -->
+<!--                                                               -->
+<!-- ① 在 Google Ads 后台：工具与设置 → 数据管理 → Google 代码       -->
+<!--    (或：目标 → 转化)，复制形如 AW-XXXXXXXXXX 的「代码 ID」。      -->
+<!-- ② 把下面 GOOGLE_ADS_ID 的值替换成你的真实 AW- ID 即可生效。       -->
+<!--    (填入真实 ID 前，脚本不会加载，也不会报错。)                  -->
+<!-- ============================================================= -->
+<script>
+  // 你的 Google Ads「代码 ID / 转化 ID」，格式必须是 AW- 开头。
+  window.GOOGLE_ADS_ID = "AW-XXXXXXXXXX";
+  // 可选：某个转化动作的完整标签，格式 "AW-XXXXXXXXXX/xxxxxxxxxxxx"，
+  // 在「工具与设置 → 转化」里为「询盘/提交表单」创建转化动作后可拿到。
+  // 留空则只上报通用事件、暂不计入具体转化。
+  window.GOOGLE_ADS_QUOTE_CONVERSION_LABEL = "";
+</script>
+<script>
+  (function () {
+    var id = window.GOOGLE_ADS_ID;
+    // 未配置真实 ID（仍是占位符）时不加载，避免无效请求与控制台报错。
+    if (!id || id.indexOf("AW-") !== 0 || id.indexOf("XXXX") !== -1) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", id);
+  })();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -578,7 +618,19 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.cl
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const form=document.getElementById('quoteForm'),card=document.getElementById('formCard'),thanks=document.getElementById('formThanks');
-form.addEventListener('submit',(e)=>{e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}card.classList.add('sent');thanks.classList.add('show');});
+form.addEventListener('submit',(e)=>{e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}card.classList.add('sent');thanks.classList.add('show');reportQuoteConversion();});
+// 向 Google Ads 上报「询盘/提交报价单」这一转化。仅在已配置真实 AW- ID 时生效。
+function reportQuoteConversion(){
+  if(typeof window.gtag!=='function')return; // 未关联 Google Ads 时静默跳过
+  const label=window.GOOGLE_ADS_QUOTE_CONVERSION_LABEL;
+  if(label){
+    // 已在 Google Ads 后台为该转化动作创建了转化标签
+    window.gtag('event','conversion',{send_to:label});
+  }else{
+    // 尚未创建具体转化标签时，先上报一个通用的潜在客户事件
+    window.gtag('event','generate_lead',{event_category:'quote',event_label:'quote_form'});
+  }
+}
 </script>
 </body>
 </html>
