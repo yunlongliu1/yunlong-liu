@@ -175,3 +175,7 @@ V1(P5 颜色metafield) V2(P2 sink-type) V3(落地页body空/主题) + P1↔P6 �
 - NZ105W3020 (P3, 30" Grooved)：标题 "Grooved" 保留（正确）；Apron 由仅 "Grooved" 补成 "Grooved / Smooth (reversible)"（P3 实为可翻转 grooved+smooth，与其他反面款格式统一）；排水 rear-right、图为微凹槽，均正确。
 方法同前(pymupdf 挖字重排, LiberationSans=Arial 度量, 无缝)。已渲染核验。
 至此 6 份 spec PDF 全部处理完（P1/P2/P4/P6 改；P3 补 apron；P5 本就正确）。
+
+## 变更执行记录（15 — P4 PDF 页眉前缀修正）
+NZ3320T (P4) 页眉前缀 "WORKSTATION:NZ-3320T" → "MODEL:NZ-3320T"（P4 为非工作站标准款，仅含格栅+排水，用 WORKSTATION 前缀不准确）。其他5款为真工作站款，前缀保留。
+挖字重排(白字/页眉灰底/ArialMT 7.63pt)，无缝；NZ3320T_fixed.pdf 已更新。
