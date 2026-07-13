@@ -46,3 +46,17 @@
 
 ## 变更记录
 （暂无 — 用户选择"仅报告，等确认后再改"）
+
+## H2 修订（04 — 关键词视角，用户提示后补强）
+根因：H1(coming-soon未清) 与 H2(纹理漂移) 同源 = 上线前模板文案未最终对齐。
+纹理漂移 = 关键词互相抢(cannibalization)，非随机：
+- 核心词(handle/card)：P1=ribbed, P3=grooved, P5=smooth, P6=fluted, P4=reversible标准, P2=double bowl
+- P6 SEO 打 "ribbed" → 抢 P1 的词，自己 "fluted" 在SEO中缺席
+- P4 SEO 打 "grooved" → 抢 P3 的词
+修复原则（重要）：不是全店统一，而是"每款回归自己核心词 + 停止抢别人的词"，
+保留 ribbed/grooved/fluted 的差异化，勿砸关键词策略。
+- P6: SEO/Alt "ribbed"→"fluted"（夺回 fluted，不再抢 P1）
+- P4: SEO 去 "grooved"（P3的词）；实物纹理待用户确认后定
+- P2: 正文 vs 图Alt 统一到实物那一对（ribbed/smooth 或 fluted/smooth）
+- P1/P3/P5: 已对齐，不动
+待用户确认：P4 实物纹理（grooved+smooth ？其他？）→ 确认后 P4/P6/P2 一次刷全字段
