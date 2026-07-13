@@ -123,3 +123,15 @@ SEO：seo.description/global.description_tag = “…grooved and smooth fronts�
 - 从当前线上版本叠加改动，未覆盖 07 的 Flat→Smooth（已校验 Smooth Side 仍在；P3 grooved 仍在）。
 - 验证：主题存储文件回读 + 线上页面回读（P3 首次因 CDN 缓存滞后，第二次已翻新）均确认生效。
 状态：N1/N2 完成。coming-soon(H1) 按用户指示暂不处理。M2/M3/L*/V* 仍待定。
+
+## 变更执行记录（10 — M2/M3/L1/L2 已改并验证，线上生效）
+- M2 保修名：P1/P4/P6 产品 descriptionHtml "Lifetime Limited Warranty"→"Limited Lifetime Warranty"
+  （注：主题模板本就正确为 "Limited Lifetime Warranty"，仅描述字段需改）。
+- M3 博客 fireclay-vs-porcelain-sink(Article 666106200301)：
+  "$479 for 30-inch and 33-inch farmhouse models" → "$479 for 33-inch farmhouse models, with 30-inch models from $549"。
+- L1 集合 fireclay-workstation-sinks(467732168941) SEO 描述：开头 "hop "→"Shop "。
+- L2 P4 custom.installation metafield：'Apron Front'→'Apron-front'（与其余5款统一）。
+- 均 userErrors=[]，回读验证通过。
+状态：H2 全部 + N1/N2 + M2/M3/L1/L2 已完成。H1(coming-soon) 暂不处理。
+剩余未处理：L3(标题引号/Inch) L4(保修完整度) L5(google_category) L6(P3 colander图) 
+V1(P5 颜色metafield) V2(P2 sink-type) V3(落地页body空/主题) + P1↔P6 竖棱命名是否统一。
