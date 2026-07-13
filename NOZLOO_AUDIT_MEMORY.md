@@ -86,3 +86,15 @@
 3. 修 P4 事实错误：正文+规格表+SEO 的"grooved"→改"fluted/ribbed"以匹配实拍图（同时消除对 P3 的抢词）。
 4. 每款三处(正文/滑块/规格表)+SEO+Alt+card 对齐到同一命名。
 待确认：P4 实拍图是否即最终实物（若是，则文字改 fluted）。
+
+## P4 修复定位（06 — 用户确认 P4=竖向纹路+光面 → 竖向=fluted，"grooved"是错的）
+用户确认：P4 一面竖向凹槽/棱纹、一面光滑 → 按店铺分类学 = fluted(竖) + smooth。故 P4 所有 "grooved" 均错。
+内容源：不在 descriptionHtml，在主题 MAIN="Updated copy of Horizon"(gid 158269538541)
+模板文件：templates/product.nz3320t.json（P4 专属；各产品独立模板）
+"grooved" 5 处（偏移量）：720 / 5311 / 8887(spec_row "Reversible (Grooved + Smooth)") / 16503 / 21259
+滑块 side_b_name 已=“Fluted Side”, side_b_desc=“Vertical ridges…” → 图正确，仅文字错。
+side_a_name=“Flat Side”（光面被标 Flat，属 smooth↔flat 全站漂移，可选统一为 Smooth）。
+SEO：seo.description/global.description_tag = “…grooved and smooth fronts…” 待改 fluted。
+拟改：模板5处 grooved→fluted；SEO 1处；图片Alt 可选统一。
+状态：等用户明确 go（改的是 MAIN 已发布主题，属线上可见改动）。未改。
+其他产品模板后缀：P1=nz103w3320 P2=nz103w3320d P3=105w3020 P5=nz3320s P6=nozloo-30
