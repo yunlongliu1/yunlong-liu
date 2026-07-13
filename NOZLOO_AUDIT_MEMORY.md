@@ -185,3 +185,11 @@ NZ3320T (P4) 页眉前缀 "WORKSTATION:NZ-3320T" → "MODEL:NZ-3320T"（P4 为�
 修法：把该图补边成 1448×1448 方图（上下加与边缘同色的暖米色 bar，顶(209,194,180)/底(218,204,191)，接缝近乎无缝），经 Shopify 暂存上传→productCreateMedia→删旧图→reorder 回 #7 位置，alt 保留。
 结果：#7 现为 SQUARE，画廊不再裁，文字完整。
 备注：P1 图 #3(尺寸图)/#5/#6 仍为横图，方形画廊也会裁两侧（#3尺寸图可能裁掉边缘标注）；同款晾架图可能也用在 P2/P3/P5/P6 上——如需可一并补边。
+
+## 变更执行记录（17 — 5 张工作站配件白底图：改名+alt+挂产品页）
+用户把 5 张配件白底图(2000x2000)传到 Shopify Files，用 SKU 命名→映射明确。
+先下载核对围裙纹理与 SKU 相符（P1/P2/P6 竖棱 fluted、P5 光面 smooth、P3 凹陷嵌板 grooved(一横两竖围框)），无 mismatch。
+- fileUpdate：改 SEO 文件名 + 写唯一 alt（每页不同，含尺寸/围裙/盆型/配件）。
+- productCreateMedia：从文件 URL 挂到对应产品：
+  P1(9296886268141)#9 fluted / P2(9313015791853)#8 double / P3(9313017168109)#9 grooved / P5(9313018970349)#10 smooth / P6(9317166153965)#8 fluted。均 READY、2000x2000、无 userErrors。
+备注：Files 库里现有 5 张"原始上传件(已改名+alt)" + 5 张"产品副本"（productCreateMedia 从URL复制会各生成一份）。如需去重可删掉库里的 5 张原始件（产品副本独立、删除不影响）。
