@@ -98,3 +98,20 @@ SEO：seo.description/global.description_tag = “…grooved and smooth fronts�
 拟改：模板5处 grooved→fluted；SEO 1处；图片Alt 可选统一。
 状态：等用户明确 go（改的是 MAIN 已发布主题，属线上可见改动）。未改。
 其他产品模板后缀：P1=nz103w3320 P2=nz103w3320d P3=105w3020 P5=nz3320s P6=nozloo-30
+
+## 变更执行记录（07 — 已改，MAIN 主题 gid 158269538541，线上已生效）
+用户批准：① P4 grooved→fluted ② 全站光面 Flat→Smooth。竖棱命名(ribbed/fluted)未统一(用户未选)。
+- P4 模板 product.nz3320t.json：grooved→fluted 共5处（正文×3+副标题×1+规格"Reversible (Grooved→Fluted + Smooth)"）；滑块 side_a "Flat Side"→"Smooth Side"。
+- P4 SEO description："grooved and smooth"→"fluted and smooth"。
+- P4 图片 Alt ×5：grooved/ribbed→fluted，flat→smooth。
+- P1 模板：滑块 "Flat Side"→"Smooth Side"；规格 "(Flat + Ribbed)"→"(Smooth + Ribbed)"；正文 "completely flat"→"completely smooth"。
+- P2 模板：滑块 "Flat Side"→"Smooth Side"；正文 "the flat side"→"the smooth side"。
+- P3 模板：仅滑块 "Flat Side"→"Smooth Side"；**grooved 全部保留**（P3 确为横向单槽）。
+- P6 模板：滑块 "Smooth Flat Side"→"Smooth Side"；正文 "smooth, flat front"×2→"smooth front"、"smooth, flat apron"→"smooth apron"。
+- 未动（正确）：晾架 "rolls flat for storage"（全款）。
+- 验证：6 页线上回读通过；P4 grooved 归零（仅剩指向 P3 的关联链接）；各页 "Smooth Side" 生效；结构(引号/括号数)不变。
+
+## 新发现（08 — 深读中冒出，超出已批范围，未改，待用户定夺）
+- N1: P1 纹理面同页矛盾 —— 滑块 "vertical flutes"(竖) vs 正文 "horizontal ridges"(横)。竖/横二选一（按实物）。
+- N2: P3 小标题 "Vertical Detail" vs P3 自定义 "a single horizontal groove"(横)。竖/横不一致，需按实物定。
+- N3: P3 残留一句泛指比较 "than a flat apron design"（非本品侧标签，故意保留；如要极致统一可改 smooth）。
