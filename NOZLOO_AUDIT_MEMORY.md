@@ -169,3 +169,9 @@ V1(P5 颜色metafield) V2(P2 sink-type) V3(落地页body空/主题) + P1↔P6 �
 - NZ3320S (P5)：本就正确（Smooth），未改，原样交付。
 输出：scratchpad/*_fixed.pdf；已渲染核验版式无缝。
 备注(未改，供参考)：P2 顶部产品照更像单盆工作站(可能复用图)；P4 页眉 "WORKSTATION:" 前缀用在非工作站标准款上——如需再议。
+
+## 变更执行记录（14 — 另 2 份 30" PDF spec 表修复）
+- NZ103W3020 (P6, 30" Reversible)：标题 "30\" Ribbed Apron Front"→"Fluted"；Apron "Ribbed / Smooth (reversible)"→"Fluted / Smooth (reversible)"。图为竖棱，与fluted相符。
+- NZ105W3020 (P3, 30" Grooved)：标题 "Grooved" 保留（正确）；Apron 由仅 "Grooved" 补成 "Grooved / Smooth (reversible)"（P3 实为可翻转 grooved+smooth，与其他反面款格式统一）；排水 rear-right、图为微凹槽，均正确。
+方法同前(pymupdf 挖字重排, LiberationSans=Arial 度量, 无缝)。已渲染核验。
+至此 6 份 spec PDF 全部处理完（P1/P2/P4/P6 改；P3 补 apron；P5 本就正确）。
