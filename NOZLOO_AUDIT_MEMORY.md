@@ -160,3 +160,12 @@ V1(P5 颜色metafield) V2(P2 sink-type) V3(落地页body空/主题) + P1↔P6 �
 - V2：P2 sink-type metaobject 与其余不同——需 read_metaobjects 确认。
 - V3：落地页 body 空、内容在主题——ribbed部分已随主题普查修复；其余规格(温度/尺寸/保修)如需逐页复核可再做。
 - 孤儿模板 product.3320.json 有1处ribbed且无法保存(预存在无效block)、无产品使用。
+
+## 变更执行记录（13 — 4 份产品 PDF spec 表修复）
+用户上传 4 份 spec 表 PDF，按修正后产品信息修复（pymupdf 挖字重排，LiberationSans=Arial度量，字体/字号/色/坐标精确匹配，无缝）：
+- NZ103W3320 (P1)：标题 "33\" Ribbed Apron Front"→"Fluted"；Apron "Ribbed / Smooth"→"Fluted / Smooth (reversible)"。
+- NZ103W3320D (P2)：Apron "Ribbed / Smooth"→"Fluted / Smooth (reversible)"。
+- NZ3320T (P4)：标题 "Ribbed"→"Fluted"；Apron "Grooved"→"Fluted / Smooth (reversible)"（图本就是竖棱，文字之前错标 Ribbed+Grooved）。
+- NZ3320S (P5)：本就正确（Smooth），未改，原样交付。
+输出：scratchpad/*_fixed.pdf；已渲染核验版式无缝。
+备注(未改，供参考)：P2 顶部产品照更像单盆工作站(可能复用图)；P4 页眉 "WORKSTATION:" 前缀用在非工作站标准款上——如需再议。
