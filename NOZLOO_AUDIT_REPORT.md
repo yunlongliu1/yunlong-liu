@@ -80,3 +80,27 @@
 - 配件材质/数量:sapele 木砧板 + 4 件套工作站配件,产品与博客一致 ✅
 - 产品卡价格($479/$519/$549/$569/$599)与实际 variant 价一致 ✅
 - 集合成员计数(6 / 4 / 2 / 5)与描述文案一致 ✅
+
+---
+
+# 修复状态更新（截至本次会话）
+
+## ✅ 已修复并线上验证
+- **H2 纹理不同步**：P4 grooved→fluted（模板/SEO/图Alt）；全站光面 Flat→Smooth。
+- **竖纹全店统一 fluted**：所有可见 "ribbed"→"fluted"（产品/6模板+首页+落地页+32主题文件/21博客/集合/app缓存/图Alt），handle 与 URL 全保留。
+- **N1**（P1 竖/横矛盾→统一竖 vertical）、**N2**（P3 滑块补为"一横两竖"）。
+- **M1** 集合30"："ribbed and grooved"→"fluted and grooved"。
+- **M2** 保修名 "Lifetime Limited"→"Limited Lifetime"（P1/P4/P6）。
+- **M3** 博客价格/尺寸口径修正（$479=33"，30"从$549起）。
+- **L1** 集合Workstation SEO "hop"→"Shop"。
+- **L2** P4 installation "Apron Front"→"Apron-front"。
+- **L3** P4 标题直引号 + SEO标题恢复/规范；P6 SEO "30 Inch"→30"。
+- **L4** P2/P3/P5 补保修行。
+- **L5** google_product_category 补到全部6款。
+
+## ⏸ 暂缓 / 待实物 / 待权限
+- **H1** coming-soon（用户：等到货再处理）。
+- **L6** P3 colander 图文（待确认是否随附）。
+- **V1/V2** P5颜色、P2 sink-type metaobject（需 read_metaobjects）。
+- **V3** 落地页其余规格复核（ribbed已修）。
+- 孤儿模板 product.3320.json（无产品使用，无法保存）。

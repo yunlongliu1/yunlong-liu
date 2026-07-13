@@ -135,3 +135,28 @@ SEO：seo.description/global.description_tag = “…grooved and smooth fronts�
 状态：H2 全部 + N1/N2 + M2/M3/L1/L2 已完成。H1(coming-soon) 暂不处理。
 剩余未处理：L3(标题引号/Inch) L4(保修完整度) L5(google_category) L6(P3 colander图) 
 V1(P5 颜色metafield) V2(P2 sink-type) V3(落地页body空/主题) + P1↔P6 竖棱命名是否统一。
+
+## 变更执行记录（11 — 竖纹全店统一 fluted + L3/L4/L5，线上生效）
+用户指令：所有 ribbed→fluted（竖纹统一）；coming-soon 暂不处理（等到货）。
+方法：先折叠成对短语(ribbed+fluted→fluted)，再词边界正则替换独立词 ribbed→fluted；
+**保护 handle/URL/CDN 文件名**（含 "-ribbed-" 的不动，共 48 处 URL 保留）。
+- 产品：P1 标题→"Reversible Fluted Apron"、SEO、描述、card_tags/card_title/display_name、6图Alt、judgeme缓存json；P2 描述+1图Alt；P6 SEO描述+1图Alt。
+- 主题：全主题 480 个文本文件普查，改 32 个（product.nz103w3320/nz103w3320d/nozloo-30、index首页、page.fs-accessories落地页、5个collection模板、collection.json、product.json/nz103w3020、20个nz-*/nzpc section/snippet、apron_options配置key+label、对比表、证言）。
+- 博客：21 篇文章（嵌入产品卡 "Reversible ribbed apron"、链接文字、散文）→ fluted。
+- 集合：30-inch SEO "ribbed and grooved"→"fluted and grooved"（**顺带修好 M1**）。
+- 残留：仅孤儿模板 product.3320.json（无产品使用；自带预存在的无效block引用，无法保存）1处；48处URL/handle有意保留。
+- 验证：全主题重扫标准词ribbed=0(除孤儿)；线上 首页/P1详情/collections-all/accessories 均HTTP200、可见Ribbed=0、Fluted正常渲染。
+
+## 变更执行记录（12 — L3/L4/L5 + 修回归）
+- L3：P4 标题花引号”→直引号"；P4 SEO标题重设 '33" Reversible Apron...|NOZLOO'（早前修grooved时只传seo.description把title清空了→已修回）；P6 SEO "30 Inch"→'30"'。
+- L4：P2/P3/P5 描述追加 "Backed by NOZLOO's Limited Lifetime Warranty. Free U.S. shipping."（补齐保修完整度）。
+- L5：google_product_category=2757 补到 P1/P2/P3/P4/P6（原仅P5有）。
+- 回归排查：仅 P4 seo.title 曾被清空，已恢复；其余5款SEO标题完好。
+
+## 仍未处理（需实物/权限，或用户指示暂缓）
+- H1 coming-soon：用户指示等到货再处理。
+- L6：P3 主图Alt "black colander tray" 未列入4件套——需确认是否随附（是→加入配件清单；否→从Alt去除）。
+- V1：P5 color-pattern 多一个metaobject引用(252206940397)——需 read_metaobjects 权限确认是否误加颜色。
+- V2：P2 sink-type metaobject 与其余不同——需 read_metaobjects 确认。
+- V3：落地页 body 空、内容在主题——ribbed部分已随主题普查修复；其余规格(温度/尺寸/保修)如需逐页复核可再做。
+- 孤儿模板 product.3320.json 有1处ribbed且无法保存(预存在无效block)、无产品使用。
