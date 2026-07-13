@@ -60,3 +60,29 @@
 - P2: 正文 vs 图Alt 统一到实物那一对（ribbed/smooth 或 fluted/smooth）
 - P1/P3/P5: 已对齐，不动
 待用户确认：P4 实物纹理（grooved+smooth ？其他？）→ 确认后 P4/P6/P2 一次刷全字段
+
+## H2 深层修订（05 — 抓线上渲染页实证，纠正 04 的错误判断）
+方法补强：Admin API 的 descriptionHtml 只是开头短介绍；产品页深层内容（"Drag to compare"
+对比滑块 + 规格表 + 特性区块）由主题区块渲染，须抓 nozloo.com 线上 HTML 才看得到。
+已抓 6 个线上产品页(200 OK)扫描。
+
+店铺自定义的分类学（来自页面原话）：
+- grooved = "a single horizontal groove"（横向凹槽）→ 真独立面（仅 P3）
+- ribbed = fluted = "vertical ridges/flutes"（竖棱）→ 同一面两名（P6原话:"a ribbed, also called fluted, front"）
+- smooth = flat = 光面（滑块标 Flat，正文/规格表标 Smooth）
+
+纠正 04：ribbed 与 fluted 不是不同产品，是同义。→ P1(33"Ribbed) 与 P6(30"Fluted) 很可能同款竖棱面，按尺寸起了两名（命名不一致）。
+
+实锤（页面自相矛盾）：
+- P4：正文+规格表="Grooved + Smooth"，但对比滑块(实拍图)="Fluted Side / vertical ridges"。
+  grooved≠fluted（店铺自定义）→ 文字/ SEO 的"grooved"是从 P3 模板抄串行；实拍图为准 → P4 实为 fluted/ribbed(竖棱)+光面。
+  → 已用图片回答上轮"P4纹理"疑问：P4 = 竖棱(fluted/ribbed)，非 grooved。
+- 全站 smooth↔flat 命名漂移：滑块统一叫"Flat"，正文/规格表叫"Smooth"（P1/P2/P3/P4/P6 都有）。
+- ribbed↔fluted 标签未统一：P1规格"Ribbed"、P4滑块"Fluted"、P6"Ribbed/Fluted"。
+
+修复原则（修订版）：
+1. 同义面统一命名：光面统一"Smooth"（弃"Flat"标签）；竖棱面全店选定一个词(Ribbed 或 Fluted)统一，或像P6显式写"Ribbed/Fluted"。
+2. 真独立面保留：grooved(横槽)保持独立，勿并入竖棱。
+3. 修 P4 事实错误：正文+规格表+SEO 的"grooved"→改"fluted/ribbed"以匹配实拍图（同时消除对 P3 的抢词）。
+4. 每款三处(正文/滑块/规格表)+SEO+Alt+card 对齐到同一命名。
+待确认：P4 实拍图是否即最终实物（若是，则文字改 fluted）。
