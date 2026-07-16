@@ -1,0 +1,442 @@
+<title>NOZLOO — US Brand Review Dossier</title>
+<style>
+  :root{
+    --surface:#eceff4; --card:#ffffff; --card-2:#f6f8fc;
+    --ink:#1a2130; --ink-2:#465166; --muted:#8892a4; --hair:#dce1ea;
+    --accent:#2b4fc9; --accent-2:#4767de; --accent-soft:#e7ecfb;
+    --track:#e4e8f1; --mark:#b3bccd;
+    --gA-s:#1f9d63; --gA-i:#12603b; --gB-s:#2f8f9e; --gB-i:#1b5c68;
+    --gC-s:#cf8a2b; --gC-i:#8a5510; --gD-s:#cd4b3c; --gD-i:#9c3125;
+    --hi:#c9873a;
+    --shadow:0 1px 2px rgba(20,30,55,.05),0 8px 28px rgba(20,30,55,.06);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","JetBrains Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --surface:#0e1117; --card:#161a23; --card-2:#1d222e;
+      --ink:#e9edf4; --ink-2:#aab4c4; --muted:#6c7788; --hair:#282f3c;
+      --accent:#7b95f2; --accent-2:#93a8f6; --accent-soft:#1b2540;
+      --track:#222a38; --mark:#3f4a5e;
+      --gA-s:#45c489; --gA-i:#63d49d; --gB-s:#4bb6c6; --gB-i:#6bcad8;
+      --gC-s:#e3a844; --gC-i:#eebb64; --gD-s:#e56a5a; --gD-i:#ef8676;
+      --hi:#e0a35c;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --surface:#eceff4; --card:#ffffff; --card-2:#f6f8fc;
+    --ink:#1a2130; --ink-2:#465166; --muted:#8892a4; --hair:#dce1ea;
+    --accent:#2b4fc9; --accent-2:#4767de; --accent-soft:#e7ecfb;
+    --track:#e4e8f1; --mark:#b3bccd;
+    --gA-s:#1f9d63; --gA-i:#12603b; --gB-s:#2f8f9e; --gB-i:#1b5c68;
+    --gC-s:#cf8a2b; --gC-i:#8a5510; --gD-s:#cd4b3c; --gD-i:#9c3125; --hi:#c9873a;
+    --shadow:0 1px 2px rgba(20,30,55,.05),0 8px 28px rgba(20,30,55,.06);
+  }
+  :root[data-theme="dark"]{
+    --surface:#0e1117; --card:#161a23; --card-2:#1d222e;
+    --ink:#e9edf4; --ink-2:#aab4c4; --muted:#6c7788; --hair:#282f3c;
+    --accent:#7b95f2; --accent-2:#93a8f6; --accent-soft:#1b2540;
+    --track:#222a38; --mark:#3f4a5e;
+    --gA-s:#45c489; --gA-i:#63d49d; --gB-s:#4bb6c6; --gB-i:#6bcad8;
+    --gC-s:#e3a844; --gC-i:#eebb64; --gD-s:#e56a5a; --gD-i:#ef8676; --hi:#e0a35c;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--surface);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,56px) clamp(16px,4vw,40px)}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  h1,h2,h3{text-wrap:balance;margin:0}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ---- masthead ---- */
+  .mast{border-bottom:1px solid var(--hair);padding-bottom:28px;margin-bottom:34px;
+    display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+  .mast h1{font-family:var(--serif);font-weight:600;font-size:clamp(46px,9vw,86px);
+    line-height:.94;letter-spacing:-.02em}
+  .mast .tm{font-family:var(--mono);font-size:12px;color:var(--muted);
+    vertical-align:super;letter-spacing:.02em}
+  .subtitle{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:14px;max-width:46ch}
+  .seal{width:132px;height:132px;border-radius:50%;flex:none;
+    display:grid;place-items:center;text-align:center;
+    background:radial-gradient(circle at 50% 38%,var(--accent-soft),var(--card));
+    border:1.5px solid var(--accent);box-shadow:var(--shadow)}
+  .seal .g{font-family:var(--serif);font-size:52px;font-weight:600;color:var(--accent);line-height:1}
+  .seal .l{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-2);margin-top:6px;max-width:96px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:22px;
+    font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .meta b{color:var(--ink-2);font-weight:600}
+
+  section{margin:40px 0}
+  .shead{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+  .shead .n{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+  .shead h2{font-family:var(--serif);font-size:clamp(22px,3.4vw,29px);font-weight:600;letter-spacing:-.01em}
+  .lead{font-size:17px;color:var(--ink-2);max-width:70ch}
+  .lead strong{color:var(--ink);font-weight:650}
+
+  /* ---- KPI tiles ---- */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  .kpi{background:var(--card);border:1px solid var(--hair);border-radius:14px;
+    padding:18px 18px 16px;box-shadow:var(--shadow)}
+  .kpi .v{font-family:var(--serif);font-size:clamp(26px,4vw,34px);font-weight:600;
+    letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1}
+  .kpi .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);margin-top:9px}
+  .kpi .s{font-size:12.5px;color:var(--ink-2);margin-top:6px;line-height:1.4}
+
+  /* ---- scorecard ---- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{position:relative;background:var(--card);border:1px solid var(--hair);
+    border-radius:14px;padding:18px 18px 18px 22px;overflow:hidden;box-shadow:var(--shadow)}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--s)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .card .dim{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;max-width:20ch}
+  .card .grade{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--i);line-height:.8;
+    font-variant-numeric:tabular-nums}
+  .card .note{font-size:13.5px;color:var(--ink-2);margin-top:12px}
+  .g-a{--s:var(--gA-s);--i:var(--gA-i)} .g-b{--s:var(--gB-s);--i:var(--gB-i)}
+  .g-c{--s:var(--gC-s);--i:var(--gC-i)} .g-d{--s:var(--gD-s);--i:var(--gD-i)}
+
+  /* ---- facts grid ---- */
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);
+    border:1px solid var(--hair);border-radius:14px;overflow:hidden}
+  .fact{background:var(--card);padding:15px 18px}
+  .fact .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  .fact .v{font-size:14.5px;color:var(--ink);margin-top:4px}
+  .fact .v em{font-style:normal;color:var(--hi);font-family:var(--mono);font-size:12px}
+
+  /* ---- charts ---- */
+  .chart{background:var(--card);border:1px solid var(--hair);border-radius:16px;
+    padding:22px clamp(16px,3vw,26px);box-shadow:var(--shadow)}
+  .chart .ctitle{font-weight:650;font-size:15px}
+  .chart .csub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:3px}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 20px;font-size:12.5px;color:var(--ink-2)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:22px;height:10px;border-radius:3px;flex:none}
+  .rows{display:flex;flex-direction:column;gap:9px}
+  .row{display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:center}
+  .row .name{font-size:12.5px;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+  .row .name b{color:var(--ink)}
+  .track{position:relative;height:22px;background:var(--track);border-radius:6px}
+  .bar{position:absolute;top:0;bottom:0;border-radius:6px;background:var(--mark);
+    display:flex;align-items:center;transition:filter .15s}
+  .bar:hover{filter:brightness(1.06)}
+  .bar.me{background:var(--accent)}
+  .bar .val{font-family:var(--mono);font-size:10.5px;position:absolute;right:-6px;
+    transform:translateX(100%);white-space:nowrap;color:var(--ink-2)}
+  .bar .val.val-l{right:auto;left:-6px;transform:translateX(-100%)}
+  .bar.me .val{color:var(--accent);font-weight:700}
+  .bar.pt{width:3px!important}
+  .axis{position:relative;height:16px;margin:8px 0 0 142px;border-top:1px solid var(--hair)}
+  .tick{position:absolute;font-family:var(--mono);font-size:10px;color:var(--muted);
+    transform:translateX(-50%);top:4px}
+  .tick::before{content:"";position:absolute;top:-8px;left:50%;width:1px;height:5px;background:var(--hair)}
+  .note-off{font-size:12.5px;color:var(--muted);margin-top:16px;padding-top:14px;border-top:1px dashed var(--hair)}
+  .note-off b{color:var(--ink-2)}
+
+  /* firing temp */
+  .temp-rows{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .trow{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center}
+  .trow .tn{font-size:12.5px;color:var(--ink-2);text-align:right}
+  .trow .tn b{color:var(--ink)}
+  .ttrack{position:relative;height:26px;background:var(--track);border-radius:6px}
+  .tbar{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--mark);
+    display:flex;align-items:center;justify-content:flex-end;padding-right:9px;
+    font-family:var(--mono);font-size:11px;color:#fff;font-weight:600}
+  .tbar.me{background:var(--accent)}
+
+  /* SWOT */
+  .swot{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .quad{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .quad h3{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;
+    display:flex;align-items:center;gap:9px}
+  .quad h3 .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .quad ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .quad li{font-size:13.5px;color:var(--ink-2);padding-left:16px;position:relative}
+  .quad li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:2px;background:var(--qc)}
+  .q-s{--qc:var(--gA-s)} .q-w{--qc:var(--gD-s)} .q-o{--qc:var(--gB-s)} .q-t{--qc:var(--gC-s)}
+
+  /* recommendations */
+  .recs{display:flex;flex-direction:column;gap:12px}
+  .rec{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
+    background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow)}
+  .pri{font-family:var(--mono);font-size:10px;letter-spacing:.08em;font-weight:700;
+    padding:5px 9px;border-radius:6px;white-space:nowrap;margin-top:2px}
+  .pri.h{background:var(--gD-s);color:#fff} .pri.m{background:var(--gC-s);color:#20160a} .pri.l{background:var(--track);color:var(--ink-2)}
+  .rec .rt{font-weight:650;font-size:15px}
+  .rec .rd{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+
+  /* sanikb callout */
+  .callout{background:linear-gradient(180deg,var(--accent-soft),var(--card));
+    border:1px solid var(--accent);border-radius:16px;padding:clamp(20px,3vw,30px);box-shadow:var(--shadow)}
+  .callout .kf{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin-bottom:6px}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0}
+  .three .t h3{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:7px}
+  .three .t p{font-size:13px;color:var(--ink-2);margin:0}
+  .insight{border-top:1px solid var(--accent);padding-top:16px;margin-top:6px;font-size:15px;color:var(--ink)}
+  .insight b{color:var(--accent)}
+
+  /* footer / evidence */
+  .evi{background:var(--card-2);border:1px solid var(--hair);border-radius:14px;padding:20px 24px}
+  .evi h3{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .evi ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px}
+  .evi li{font-size:12.5px;color:var(--ink-2)}
+  .evi li b{color:var(--ink)}
+  .foot{margin-top:26px;padding-top:18px;border-top:1px solid var(--hair);
+    font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
+
+  .tooltip{position:fixed;pointer-events:none;opacity:0;transition:opacity .12s;z-index:50;
+    background:var(--ink);color:var(--surface);font-size:12px;padding:7px 10px;border-radius:8px;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:240px;font-family:var(--sans)}
+  .tooltip b{font-family:var(--mono)}
+
+  @media (max-width:820px){
+    .mast{grid-template-columns:1fr} .seal{justify-self:start}
+    .kpis{grid-template-columns:repeat(2,1fr)} .cards{grid-template-columns:1fr 1fr}
+    .three{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .cards,.swot,.facts{grid-template-columns:1fr} .kpis{grid-template-columns:1fr 1fr}
+    .row{grid-template-columns:96px 1fr} .row .name{font-size:11px}
+    .axis{margin-left:108px} .trow{grid-template-columns:110px 1fr}
+    .rec{grid-template-columns:1fr;gap:8px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div>
+      <p class="eyebrow">Competitive Brand Dossier · US Market</p>
+      <h1>NOZLOO<span class="tm">™ pending</span></h1>
+      <p class="subtitle">The fireclay farmhouse-sink specialist — a factory-direct DTC brand reviewed across seven dimensions.</p>
+      <div class="meta">
+        <span><b>Category</b> Fireclay farmhouse sinks</span>
+        <span><b>Prepared for</b> SANIKB</span>
+        <span><b>As of</b> Jul 2026</span>
+        <span><b>Method</b> 22-agent research · 12 verified claims</span>
+      </div>
+    </div>
+    <div class="seal" title="Overall brand-health grade">
+      <div>
+        <div class="g">B−</div>
+        <div class="l">Overall brand health</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <p class="lead"><strong>One idea, executed with unusual discipline.</strong> NOZLOO sells genuine fireclay apron-front <em>workstation</em> sinks at <strong>$479–$599</strong> under the banner <strong>“Real Fireclay. No Brand Markup.”</strong> The price edge is real and the SEO engine is sharp — but the brand is capped by a thin trust foundation, self-contradictory policy pages, and a commoditized niche it doesn't yet defend.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="v">$479–599</div><div class="k">Price band</div><div class="s">Cheapest <em>branded</em> fireclay workstation</div></div>
+      <div class="kpi"><div class="v">0</div><div class="k">Active Meta ads</div><div class="s">Content-first; no paid flywheel found</div></div>
+      <div class="kpi"><div class="v">≈ 0</div><div class="k">Indep. reviews</div><div class="s">Empty Trustpilot · no Reddit/BBB</div></div>
+      <div class="kpi"><div class="v">2025</div><div class="k">Founded</div><div class="s">CA LLC · trademark pending</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">01</span><h2>Brand-health scorecard</h2></div>
+    <div class="cards">
+      <div class="card g-b"><div class="top"><div class="dim">Brand identity</div><div class="grade">B</div></div><div class="note">Disciplined single-idea positioning and a tight master line. Held back by a meaning-free coined name, no human founder story, and <em>unverified</em> visual identity.</div></div>
+      <div class="card g-b"><div class="top"><div class="dim">Product &amp; pricing</div><div class="grade">B+</div></div><div class="note">Real, market-beating value on the workstation config. Narrow catalog (6 SKUs, white-only) and contradictory warranty/return terms drag it.</div></div>
+      <div class="card g-a"><div class="top"><div class="dim">Digital / SEO</div><div class="grade">A−</div></div><div class="note">The clear strength — a mature topical-authority blog ranking page one. Capped only because traffic/ranking metrics can't be verified.</div></div>
+      <div class="card g-d"><div class="top"><div class="dim">Advertising</div><div class="grade">D</div></div><div class="note">No <em>discoverable</em> paid footprint (0 Meta ads, no affiliate codes). Defensible as a launch, but no demand engine beyond organic search.</div></div>
+      <div class="card g-c"><div class="top"><div class="dim">Reputation &amp; trust</div><div class="grade">C−</div></div><div class="note">The biggest liability — near-zero independent validation, hidden ownership, empty Trustpilot, typosquat-confusion risk.</div></div>
+      <div class="card g-c"><div class="top"><div class="dim">Competitive position</div><div class="grade">C+</div></div><div class="note">One genuine edge (aggressive DTC price) in a crowded, commoditized niche with no retail distribution.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">02</span><h2>Company snapshot</h2></div>
+    <div class="facts">
+      <div class="fact"><div class="k">Legal entity</div><div class="v">Nozloo Kitchen &amp; Bath LLC &nbsp;<em>verified</em></div></div>
+      <div class="fact"><div class="k">Headquarters</div><div class="v">Rancho Cucamonga, California &nbsp;<em>verified</em></div></div>
+      <div class="fact"><div class="k">Founded</div><div class="v">2025 (self-stated) · LLC/TM footprint 2026</div></div>
+      <div class="fact"><div class="k">Trademark</div><div class="v">USPTO serial 99732306 · filed 2026-03-30 · <em>pending</em></div></div>
+      <div class="fact"><div class="k">Country of manufacture</div><div class="v">Not stated · China is an <em>inference</em>, not a fact</div></div>
+      <div class="fact"><div class="k">Model</div><div class="v">US-warehoused importer · LTL freight · Shopify DTC</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">03</span><h2>Price positioning</h2></div>
+    <div class="chart">
+      <div class="ctitle">Comparable fireclay apron / workstation sinks — US street price</div>
+      <div class="csub">Approximate ranges · brands' own / retailer listings · NOZLOO figures self-sourced</div>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--accent)"></i> NOZLOO</span>
+        <span><i class="swatch" style="background:var(--mark)"></i> Competitors</span>
+        <span style="color:var(--muted)">Bars show low–high; ▏= single price point</span>
+      </div>
+      <div class="rows" id="ladder"></div>
+      <div class="axis" id="axis"></div>
+      <div class="note-off"><b>Off-scale luxury / heritage tier:</b> Kohler Whitehaven ≈ $1,238 <span style="color:var(--muted)">(enameled cast iron, not fireclay)</span> · Rohl / Shaws fireclay $1,500+ · Native Trails hand-glazed Italian $1,500–$3,000+.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">04</span><h2>Advertised firing temperature</h2></div>
+    <div class="chart">
+      <div class="ctitle">A spec rivals can attack — °F, each brand's marketing claim</div>
+      <div class="csub">Marketing figures, not lab-verified · no evidence the gap changes real-world durability</div>
+      <div class="temp-rows" id="temps"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">05</span><h2>SWOT</h2></div>
+    <div class="swot">
+      <div class="quad q-s"><h3><span class="dot" style="background:var(--gA-s)"></span>Strengths</h3><ul>
+        <li>Razor-sharp single-category specialist positioning &amp; compressed value line.</li>
+        <li>Genuine price advantage on workstation config ($479–599 vs $600–836+).</li>
+        <li>Mature SEO content engine → low-cost organic acquisition.</li>
+        <li>“Everything in the box” 4-piece accessory bundle.</li>
+        <li>Operationally real: CA LLC, US-warehoused freight — not a dropshipper.</li>
+      </ul></div>
+      <div class="quad q-w"><h3><span class="dot" style="background:var(--gD-s)"></span>Weaknesses</h3><ul>
+        <li>Almost no independent trust; hidden ownership, low traffic.</li>
+        <li>Self-sourced claims; site contradicts itself on warranty duration.</li>
+        <li>Meaning-free name signals nothing; no founder story.</li>
+        <li>Narrow catalog — 6 models, white glossy only.</li>
+        <li>No retail/marketplace distribution; single-channel growth.</li>
+        <li>2,200°F spec &amp; no provenance story — two attack surfaces.</li>
+      </ul></div>
+      <div class="quad q-o"><h3><span class="dot" style="background:var(--gB-s)"></span>Opportunities</h3><ul>
+        <li>Ride a growing subsegment (workstation ≈ 25% of premium sales).</li>
+        <li>Close the trust gap cheaply — seed reviews &amp; installer unboxings.</li>
+        <li>Expand finishes (matte, black) vs Bocchi's 9 colors.</li>
+        <li>Add a paid-search floor to defend SEO gains.</li>
+        <li>Publish provenance + certifications + a named human team.</li>
+      </ul></div>
+      <div class="quad q-t"><h3><span class="dot" style="background:var(--gC-s)"></span>Threats</h3><ul>
+        <li>“Fireclay workstation” already commoditized by 8+ rivals.</li>
+        <li>Ruvati Fiore — near feature-for-feature match with retail + provenance.</li>
+        <li>Budget house brands undercut the price message on plain aprons.</li>
+        <li>Typosquat domains drag perceived trust.</li>
+        <li>Larger rivals can out-invest in ads, retail &amp; comparison SEO.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">06</span><h2>Priority recommendations</h2></div>
+    <div class="recs">
+      <div class="rec"><span class="pri h">HIGH</span><div><div class="rt">Attack the trust gap first — build independent social proof</div><div class="rd">Seed verified reviews (Trustpilot + on-site), amplify installer/YouTube unboxings, engage Reddit/Houzz threads, and publish a named founder/team page. Highest ROI — the product value exists; only the proof is missing.</div></div></div>
+      <div class="rec"><span class="pri h">HIGH</span><div><div class="rt">Fix self-inflicted credibility leaks</div><div class="rd">Standardize warranty wording (kill “Lifetime” vs “10-year”), publish a clear return/restocking policy, and add a transparent origin + certification story with kiln footage.</div></div></div>
+      <div class="rec"><span class="pri m">MED</span><div><div class="rt">Defend the SEO moat &amp; add a paid-search floor</div><div class="rd">Protect topical authority (refresh comparison guides, schema, backlinks) and layer modest branded + comparison-keyword Search/Shopping + retargeting.</div></div></div>
+      <div class="rec"><span class="pri m">MED</span><div><div class="rt">Broaden the range to neutralize competitor advantages</div><div class="rd">Add matte/dark finishes and — if factory data supports it — upgrade or reframe the durability/firing narrative with independent testing.</div></div></div>
+      <div class="rec"><span class="pri l">LOW</span><div><div class="rt">Add a second demand source</div><div class="rd">Test selective marketplace listings and/or a trade/contractor program to diversify beyond one low-traffic storefront.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="n">07</span><h2>What this means for SANIKB</h2></div>
+    <div class="callout">
+      <div class="kf">OEM-to-DTC archetype · read the model, not just the rival</div>
+      <p class="lead" style="color:var(--ink)">NOZLOO is a live demonstration of the factory-direct DTC play SANIKB could enable or emulate — its own Crunchbase copy (“20+ years of ceramics manufacturing… cutting out the middleman”) reads as the US brand/import arm of an established factory. <span style="color:var(--muted);font-size:14px">(The specific factory link and Chinese origin are inferences, not verified.)</span></p>
+      <div class="three">
+        <div class="t"><h3>◔ Threat</h3><p>DTC brands compress the value chain and undercut the retail buyers SANIKB supplies ($479–599 vs $600–836+), and compete with SANIKB's own “Best Fireclay Sink Brands” guide in search.</p></div>
+        <div class="t"><h3>◑ Opportunity</h3><p>SANIKB could power or launch a US DTC brand and capture that margin — starting with the two assets NOZLOO lacks: verifiable certifications (cUPC/ISO/WRAS) and a genuine provenance story.</p></div>
+        <div class="t"><h3>◕ Lessons</h3><p>Copy the specialist positioning, bundled kit, US-warehoused freight &amp; content SEO. Avoid launching with zero reviews, hidden ownership, contradictory policies &amp; a single channel.</p></div>
+      </div>
+      <p class="insight"><b>Decisive insight:</b> the factory-direct price gap is real and defensible — but the binding constraint on this model is <b>trust, not product</b>, and trust is exactly where a certified, plant-owning manufacturer like SANIKB has an edge NOZLOO cannot easily buy. Lead with certifications and reviews from day one.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="evi">
+      <h3>Evidence &amp; confidence notes</h3>
+      <ul>
+        <li><b>Self-sourced data.</b> Pricing, box contents, firing temp &amp; warranty text come from NOZLOO's own pages (the site blocks automated fetch — figures are from search snippets). No third-party retailer corroborates its pricing.</li>
+        <li><b>Verified independently:</b> the legal entity &amp; California location (USPTO + business registries), the pending trademark, and the 0-count Meta Ad Library result.</li>
+        <li><b>Inference, not fact:</b> “Made in China,” the SANIKB↔NOZLOO factory link, and page-one rankings (no traffic/DA data). Country of origin is undisclosed.</li>
+        <li><b>Unresolved:</b> warranty duration conflicts across NOZLOO's own pages; the ~$529 smooth-apron price and whether the ~$479 entry model includes the kit; certification (cUPC/NSF) status; and visual brand identity — all unconfirmed.</li>
+        <li><b>Corrected:</b> the firing-temp gap vs Ruvati/ZUHNE is ~700°F (not 300–400°F); Nantucket (~2,000°F+) should not be grouped with the 2,900°F brands. All temps are marketing claims.</li>
+      </ul>
+    </div>
+    <p class="foot">Sources: nozloo.com · uspto.report/TM/99732306 · bizapedia.com · crunchbase.com/organization/nozloo · scamadviser.com · trustpilot.com · Meta Ad Library · ruvati.com · zuhne.com · bocchiusa.com · nantucketsinksusa.com · thesinkboutique.com<br>
+    Prepared as competitive intelligence for SANIKB. Point-in-time (Jul 2026); re-check the live site before any commercial decision. Items labelled “inference” or self-sourced are not independently verified.</p>
+  </section>
+
+</div>
+
+<div class="tooltip" id="tip"></div>
+
+<script>
+  // ---- Price ladder (linear axis 0 → 1300) ----
+  const AXIS_MAX = 1300;
+  const ladder = [
+    {n:"Glacier Bay", tier:"Budget · Home Depot", lo:290, hi:415},
+    {n:"Allen + Roth", tier:"Budget · Lowe's", lo:350, hi:500},
+    {n:"Ruvati Fiamma 30\"", tier:"Value branded", lo:469, hi:469},
+    {n:"NOZLOO", tier:"Fireclay workstation + 4-pc kit", lo:479, hi:599, me:true},
+    {n:"Empire", tier:"Mid branded", lo:574, hi:1218},
+    {n:"Nantucket Cape", tier:"Mid branded", lo:580, hi:690},
+    {n:"Kraus Turino", tier:"Workstation rival", lo:600, hi:700},
+    {n:"ZUHNE Ostia", tier:"Workstation rival", lo:649, hi:788},
+    {n:"Ruvati Fiore", tier:"Closest match", lo:700, hi:800},
+    {n:"Whitehaus", tier:"Workstation rival", lo:763, hi:805},
+    {n:"Bocchi Classico", tier:"Best-value branded", lo:800, hi:860},
+    {n:"Kohler Whitehaven*", tier:"*cast iron, not fireclay", lo:1238, hi:1238},
+  ];
+  const pct = v => (v/AXIS_MAX*100);
+  const fmt = v => "$"+v.toLocaleString();
+  const el = document.getElementById("ladder");
+  ladder.forEach(d=>{
+    const isPt = d.lo===d.hi;
+    const left = pct(d.lo), w = Math.max(pct(d.hi-d.lo), isPt?0:1.2);
+    const rightEdge = pct(d.hi);
+    const flip = rightEdge > 74;               // label would overflow → place it left of the bar end
+    const label = isPt ? fmt(d.lo) : fmt(d.lo)+"–"+fmt(d.hi);
+    const row = document.createElement("div"); row.className="row";
+    row.innerHTML = `<div class="name">${d.me?'<b>'+d.n+'</b>':d.n}</div>
+      <div class="track"><div class="bar ${d.me?'me':''} ${isPt?'pt':''}"
+        style="left:${left}%;width:${isPt?3+'px':w+'%'}"
+        data-t="${d.n}" data-p="${label}" data-s="${d.tier}">
+        <span class="val ${flip?'val-l':''}">${label}</span></div></div>`;
+    el.appendChild(row);
+  });
+  // axis ticks
+  const ax = document.getElementById("axis");
+  [0,250,500,750,1000,1250].forEach(t=>{
+    const s=document.createElement("span"); s.className="tick";
+    s.style.left=pct(t)+"%"; s.textContent = t===0?"$0":"$"+t.toLocaleString();
+    ax.appendChild(s);
+  });
+
+  // ---- Firing temp ----
+  const T_MAX = 3000;
+  const temps=[
+    {n:"Ruvati · ZUHNE", v:2900, s:"advertised"},
+    {n:"NOZLOO", v:2200, s:"advertised", me:true},
+    {n:"Nantucket", v:2000, s:"“over 2,000°F”"},
+  ];
+  const te=document.getElementById("temps");
+  temps.forEach(d=>{
+    const r=document.createElement("div"); r.className="trow";
+    r.innerHTML=`<div class="tn">${d.me?'<b>'+d.n+'</b>':d.n}</div>
+      <div class="ttrack"><div class="tbar ${d.me?'me':''}" style="width:${d.v/T_MAX*100}%"
+        data-t="${d.n}" data-p="${d.v.toLocaleString()}°F" data-s="${d.s}">${d.v.toLocaleString()}°F</div></div>`;
+    te.appendChild(r);
+  });
+
+  // ---- tooltip ----
+  const tip=document.getElementById("tip");
+  function show(e){const b=e.target.closest("[data-t]"); if(!b)return;
+    tip.innerHTML=`<b>${b.dataset.t}</b> — ${b.dataset.p}<br><span style="opacity:.75">${b.dataset.s}</span>`;
+    tip.style.opacity=1; move(e);}
+  function move(e){tip.style.left=(e.clientX+14)+"px"; tip.style.top=(e.clientY+14)+"px";}
+  function hide(){tip.style.opacity=0;}
+  document.querySelectorAll("[data-t]").forEach(b=>{
+    b.addEventListener("mouseenter",show); b.addEventListener("mousemove",move); b.addEventListener("mouseleave",hide);
+  });
+</script>
