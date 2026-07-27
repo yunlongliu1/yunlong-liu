@@ -1,0 +1,12 @@
+# claude-seo 运行时与输出产物（不入库）
+.claude/skills/seo/**/__pycache__/
+.claude/skills/seo/**/*.pyc
+.claude/skills/seo/drift/
+.claude/skills/seo/.runtime/
+.claude/settings.local.json
+
+# 凭据 — 永不入库
+.env
+.env.*
+*credentials*.json
+*client_secret*.json
