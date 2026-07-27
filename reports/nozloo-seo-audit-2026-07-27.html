@@ -1,0 +1,1015 @@
+<title>NOZLOO 全站 SEO 审计</title>
+
+<style>
+:root {
+  /* Palette drawn from the product itself: fired clay, glaze white, celadon, iron oxide */
+  --ground:      #F6F4F1;
+  --ground-sunk: #EFEBE6;
+  --panel:       #FFFFFF;
+  --ink:         #221F1C;
+  --ink-soft:    #4A443D;
+  --muted:       #6E675F;
+  --rule:        #DFD9D1;
+  --rule-soft:   #EAE5DE;
+  --accent:      #3F6B5C;   /* celadon glaze */
+  --accent-weak: #E4EDE8;
+  --sev-crit:    #A32E22;   /* iron oxide */
+  --sev-high:    #A9691A;
+  --sev-med:     #52627A;
+  --sev-low:     #7A7268;
+  --shadow:      0 1px 2px rgba(34,31,28,.05), 0 8px 24px -16px rgba(34,31,28,.22);
+
+  --display: Georgia, "Iowan Old Style", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+          "Microsoft YaHei", "Noto Sans CJK SC", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground:      #1A1917;
+    --ground-sunk: #141312;
+    --panel:       #221F1D;
+    --ink:         #EAE5DE;
+    --ink-soft:    #C4BDB3;
+    --muted:       #948C82;
+    --rule:        #35312C;
+    --rule-soft:   #2A2724;
+    --accent:      #7FB09C;
+    --accent-weak: #23322C;
+    --sev-crit:    #DE7264;
+    --sev-high:    #D79B4A;
+    --sev-med:     #8FA3BC;
+    --sev-low:     #9A9187;
+    --shadow:      0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:      #1A1917;
+  --ground-sunk: #141312;
+  --panel:       #221F1D;
+  --ink:         #EAE5DE;
+  --ink-soft:    #C4BDB3;
+  --muted:       #948C82;
+  --rule:        #35312C;
+  --rule-soft:   #2A2724;
+  --accent:      #7FB09C;
+  --accent-weak: #23322C;
+  --sev-crit:    #DE7264;
+  --sev-high:    #D79B4A;
+  --sev-med:     #8FA3BC;
+  --sev-low:     #9A9187;
+  --shadow:      0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+}
+
+:root[data-theme="light"] {
+  --ground:      #F6F4F1;
+  --ground-sunk: #EFEBE6;
+  --panel:       #FFFFFF;
+  --ink:         #221F1C;
+  --ink-soft:    #4A443D;
+  --muted:       #6E675F;
+  --rule:        #DFD9D1;
+  --rule-soft:   #EAE5DE;
+  --accent:      #3F6B5C;
+  --accent-weak: #E4EDE8;
+  --sev-crit:    #A32E22;
+  --sev-high:    #A9691A;
+  --sev-med:     #52627A;
+  --sev-low:     #7A7268;
+  --shadow:      0 1px 2px rgba(34,31,28,.05), 0 8px 24px -16px rgba(34,31,28,.22);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ---------- masthead ---------- */
+
+.mast { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mast h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5.5vw, 3.1rem);
+  line-height: 1.12;
+  letter-spacing: -.015em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.mast .lede {
+  font-size: 1.075rem;
+  color: var(--ink-soft);
+  max-width: 44rem;
+  margin: 0;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: .755rem;
+  color: var(--muted);
+}
+.meta-row b { color: var(--ink-soft); font-weight: 600; }
+
+/* ---------- score ---------- */
+
+.scoreband {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow);
+}
+@media (max-width: 44rem) { .scoreband { grid-template-columns: 1fr; gap: 1.75rem; } }
+
+.score-figure { display: flex; flex-direction: column; gap: .5rem; }
+.score-num {
+  font-family: var(--display);
+  font-size: 5.25rem;
+  line-height: .85;
+  letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+.score-num span { font-size: 1.75rem; color: var(--muted); letter-spacing: 0; }
+.score-cap { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
+             text-transform: uppercase; color: var(--muted); }
+
+.bars { display: flex; flex-direction: column; gap: .7rem; }
+.bar-row { display: grid; grid-template-columns: 8.5rem 1fr 3.6rem; gap: .85rem; align-items: center; }
+@media (max-width: 34rem) { .bar-row { grid-template-columns: 7rem 1fr 3rem; gap: .6rem; } }
+.bar-label { font-size: .82rem; color: var(--ink-soft); }
+.bar-track { height: 7px; background: var(--ground-sunk); border-radius: 1px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--accent); border-radius: 1px; }
+.bar-fill.na { background: repeating-linear-gradient(135deg, var(--rule) 0 4px, transparent 4px 8px); }
+.bar-val { font-family: var(--mono); font-size: .76rem; text-align: right;
+           font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+.bar-val.na { color: var(--muted); }
+
+/* ---------- sections ---------- */
+
+section { display: flex; flex-direction: column; gap: 1.5rem; }
+
+h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.7rem;
+  letter-spacing: -.01em;
+  margin: 0;
+  padding-bottom: .7rem;
+  border-bottom: 1px solid var(--rule);
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: var(--body);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+p { margin: 0; max-width: 46rem; }
+.dim { color: var(--ink-soft); }
+
+/* ---------- coverage ---------- */
+
+.cov { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
+.cov-col {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 2px;
+  padding: 1.25rem 1.4rem; display: flex; flex-direction: column; gap: .85rem;
+}
+.cov-col ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .35rem; }
+.cov-col li { font-size: .88rem; color: var(--ink-soft); }
+.cov-col.yes { border-left: 3px solid var(--accent); }
+.cov-col.no  { border-left: 3px solid var(--sev-low); }
+
+/* ---------- findings ---------- */
+
+.findings { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.finding {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-left-width: 3px;
+  border-radius: 2px;
+  padding: 1.35rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+.finding.crit { border-left-color: var(--sev-crit); }
+.finding.high { border-left-color: var(--sev-high); }
+.finding.med  { border-left-color: var(--sev-med); }
+.finding.low  { border-left-color: var(--sev-low); }
+
+.f-head { display: flex; flex-wrap: wrap; gap: .6rem .85rem; align-items: baseline; }
+
+.chip {
+  font-family: var(--mono);
+  font-size: .655rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .22rem .5rem;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.chip.crit { color: var(--sev-crit); }
+.chip.high { color: var(--sev-high); }
+.chip.med  { color: var(--sev-med); }
+.chip.low  { color: var(--sev-low); }
+.chip.verify { color: var(--muted); }
+
+.f-title { font-weight: 650; font-size: 1.02rem; line-height: 1.4; flex: 1 1 16rem; }
+
+.f-body { display: flex; flex-direction: column; gap: .7rem; font-size: .92rem; }
+.f-body p { max-width: none; }
+
+.f-line { display: grid; grid-template-columns: 4.5rem 1fr; gap: .9rem; align-items: start; }
+@media (max-width: 34rem) { .f-line { grid-template-columns: 1fr; gap: .2rem; } }
+.f-key {
+  font-family: var(--mono); font-size: .655rem; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--muted); padding-top: .28rem;
+}
+.f-val { color: var(--ink-soft); }
+.f-val strong { color: var(--ink); font-weight: 650; }
+
+code {
+  font-family: var(--mono);
+  font-size: .845em;
+  background: var(--ground-sunk);
+  padding: .1em .38em;
+  border-radius: 2px;
+  word-break: break-word;
+}
+
+/* ---------- tables ---------- */
+
+.scroller { overflow-x: auto; border: 1px solid var(--rule); border-radius: 2px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: .855rem; }
+th, td { padding: .62rem .9rem; text-align: left; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+thead th {
+  font-family: var(--mono); font-size: .655rem; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500; background: var(--ground-sunk); white-space: nowrap;
+  border-bottom: 1px solid var(--rule);
+}
+tbody tr:last-child td { border-bottom: none; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+td.over { color: var(--sev-high); font-weight: 650; }
+td.handle { font-family: var(--mono); font-size: .78rem; color: var(--ink-soft); }
+
+/* ---------- credits ---------- */
+
+.credits { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: .9rem; }
+.credit {
+  border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+  background: var(--accent-weak); border-radius: 2px; padding: .95rem 1.15rem;
+  display: flex; flex-direction: column; gap: .3rem;
+}
+.credit b { font-size: .92rem; }
+.credit span { font-size: .845rem; color: var(--ink-soft); }
+
+/* ---------- action plan ---------- */
+
+.plan { display: flex; flex-direction: column; gap: 0; counter-reset: step; }
+.step {
+  display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.1rem;
+  padding: 1.1rem 0; border-bottom: 1px solid var(--rule-soft);
+}
+.step:last-child { border-bottom: none; }
+.step-n {
+  font-family: var(--mono); font-size: .8rem; color: var(--accent);
+  font-variant-numeric: tabular-nums; padding-top: .15rem;
+}
+.step-b { display: flex; flex-direction: column; gap: .35rem; }
+.step-b b { font-size: .97rem; font-weight: 650; }
+.step-b span { font-size: .885rem; color: var(--ink-soft); }
+.step-dep {
+  font-family: var(--mono); font-size: .68rem; color: var(--muted);
+  letter-spacing: .04em; padding-top: .15rem;
+}
+
+/* ---------- note ---------- */
+
+.note {
+  background: var(--ground-sunk); border: 1px solid var(--rule);
+  border-radius: 2px; padding: 1.15rem 1.35rem;
+  font-size: .89rem; color: var(--ink-soft);
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.note b { color: var(--ink); }
+
+footer {
+  border-top: 1px solid var(--rule); padding-top: 1.5rem;
+  font-family: var(--mono); font-size: .715rem; color: var(--muted); line-height: 1.75;
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:focus-visible, :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">全站 SEO 审计 · nozloo.com</div>
+    <h1>NOZLOO 陶土农舍水槽<br>全站 SEO 审计报告</h1>
+    <p class="lede">
+      这是一个建得相当扎实的站点：重定向零遗漏、meta 描述纪律罕见地好、图片 alt 写得比大多数品牌都认真。
+      问题不在基础功，而在<strong>六个产品页——也就是唯一直接产生收入的页面——正在 SERP 里被截断，一半还拿不到星级评分</strong>。
+      信息型内容已经能排上来，商业型词一个都没进首页。
+    </p>
+    <div class="meta-row">
+      <span><b>审计日期</b> 2026-07-27</span>
+      <span><b>数据源</b> Shopify Admin API + Google SERP</span>
+      <span><b>覆盖对象</b> 63 个 URL</span>
+      <span><b>店铺</b> 6 商品 / 4 集合 / 39 文章 / 14 页面</span>
+    </div>
+  </header>
+
+  <!-- ============ SCORE ============ -->
+  <section>
+    <div class="scoreband">
+      <div class="score-figure">
+        <div class="score-num">71<span>/100</span></div>
+        <div class="score-cap">健康分 · 覆盖 80% 权重</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <span class="bar-label">内容质量 E-E-A-T</span>
+          <span class="bar-track"><span class="bar-fill" style="width:72%"></span></span>
+          <span class="bar-val">72</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">技术 SEO</span>
+          <span class="bar-track"><span class="bar-fill" style="width:75%"></span></span>
+          <span class="bar-val">75</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">On-Page</span>
+          <span class="bar-track"><span class="bar-fill" style="width:68%"></span></span>
+          <span class="bar-val">68</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">结构化数据</span>
+          <span class="bar-track"><span class="bar-fill" style="width:60%"></span></span>
+          <span class="bar-val">60</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">图片</span>
+          <span class="bar-track"><span class="bar-fill" style="width:90%"></span></span>
+          <span class="bar-val">90</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">性能 CWV</span>
+          <span class="bar-track"><span class="bar-fill na" style="width:100%"></span></span>
+          <span class="bar-val na">未测</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">AI 搜索就绪</span>
+          <span class="bar-track"><span class="bar-fill na" style="width:100%"></span></span>
+          <span class="bar-val na">未测</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COVERAGE ============ -->
+  <section>
+    <h2>这份审计测了什么，没测什么</h2>
+    <p class="dim">
+      执行环境的网络策略禁止访问 nozloo.com（curl 与页面抓取均返回 403，代理日志记录为 policy denial）。
+      因此本次审计走的是 <b>Shopify Admin API 读取源数据</b> + <b>Google SERP 实测</b> 两条通道，
+      没有抓取任何渲染后的页面。下面把边界说清楚——没测到的部分不会被算进分数，也不会被含糊带过。
+    </p>
+    <div class="cov">
+      <div class="cov-col yes">
+        <h3>已实测</h3>
+        <ul>
+          <li>63 个对象的 title / meta description 全量长度与缺失</li>
+          <li>19 条 URL 重定向的完整映射与链路</li>
+          <li>产品 schema 输入项：分类法、评分元字段、渠道发布状态</li>
+          <li>约 50 张产品图的 alt 文本</li>
+          <li>导航菜单与内链结构</li>
+          <li>39 篇文章的作者、标签、发布时间</li>
+          <li>市场 / 国际化配置</li>
+          <li>头部商业词与信息词的真实 SERP 表现</li>
+        </ul>
+      </div>
+      <div class="cov-col no">
+        <h3>未能测到（需放行域名后补测）</h3>
+        <ul>
+          <li>Core Web Vitals / INP 实测（占框架 10%）</li>
+          <li>AI 搜索就绪度、llms.txt、AI 爬虫可达性（10%）</li>
+          <li>robots.txt 与 sitemap.xml 实际内容</li>
+          <li>渲染后的 canonical 标签与 JSON-LD</li>
+          <li>安全响应头与 JS 渲染表现</li>
+          <li>索引膨胀与实际收录页数</li>
+          <li>外链档案</li>
+          <li>Search Console 真实点击/展现数据</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">
+      <b>关于 71 分</b>
+      <span>这个分数是在<strong>能测到的 80% 权重</strong>上归一化得出的，不是完整框架的分数。
+      性能与 AI 搜索就绪两项（合计 20%）完全没有数据，技术 SEO 与结构化数据两项也只覆盖了各自的一部分。
+      补测之后分数会变——往哪边变取决于 CWV 和渲染层的实际情况。</span>
+    </div>
+  </section>
+
+  <!-- ============ HIGH ============ -->
+  <section>
+    <h2>高优先级 · 一周内处理</h2>
+    <p class="dim">没有发现阻断索引或触发惩罚的严重问题——<strong>Critical 数量为 0</strong>。下面五项都直接影响收入页的可见度与点击率。</p>
+
+    <div class="findings">
+
+      <div class="finding high">
+        <div class="f-head">
+          <span class="chip high">High</span>
+          <span class="f-title">全部 6 个产品页标题超长，100% 在 SERP 被截断</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            6 个产品的 title 长度为 <strong>69–74 字符</strong>，全部超过约 60 字符的截断阈值。
+            全站 59 个已设置的 title 里有 9 个超长，其中 6 个就是这六个产品页。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            这六个页面是站内唯一直接产生交易的页面。标题被截断意味着买家在 SERP 上看不到结尾——
+            而结尾恰好是差异化信息（<code>with Workstation Kit</code>）和品牌名。截断直接压低点击率。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            把品牌后缀和重复的 <code>Fireclay</code> 挤出去。例如
+            <code>30" Reversible Apron Fireclay Farmhouse Sink with Workstation Kit | NOZLOO</code>（74）
+            → <code>30" Reversible Apron Fireclay Workstation Sink | NOZLOO</code>（54）。
+            尺寸和差异化特征保留在前 60 字符内，这是买家扫视时唯一会读到的部分。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么验证</span><span class="f-val">
+            改完 2–4 周后在 Search Console 里看这 6 个 URL 的 CTR。若展现量持平而 CTR 未上升，
+            说明瓶颈不在标题而在排名位置，应转向下面的 H3。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding high">
+        <div class="f-head">
+          <span class="chip high">High</span>
+          <span class="f-title">一半产品拿不到星级评分：3/6 缺少评价数据</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            <code>reviews.rating</code>、<code>reviews.rating_count</code> 与 Judge.me 元字段只存在于 3 个产品上：
+            30" 沟槽款、33" 罗纹款、33" 平滑款。缺失的 3 个是
+            <code>30-inch-reversible-apron</code>、<code>33-inch-fireclay-double-bowl</code>、
+            <code>33-inch-reversible-apron</code>。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            没有 <code>AggregateRating</code>，Google 就无法渲染星级富摘要。对 $479–599 的高客单商品，
+            SERP 里有没有星星是点击率差异最大的单一因素之一。注意缺失的三个里包含
+            <strong>$479 的入门款</strong>——最容易被比价点进来的那个。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            先查是这三款确实零评价，还是 Judge.me 没同步。若是真的没评价，
+            对已交付订单做定向评价邀请；富摘要必须建立在真实评价上，不能靠手工写 schema 造。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么验证</span><span class="f-val">
+            在 Search Console 的「商品摘要」增强报告里看有效项从 3 涨到 6。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding high">
+        <div class="f-head">
+          <span class="chip high">High</span>
+          <span class="f-title">信息型词能排，商业型词全线失守</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            实测两个词。<code>fireclay vs porcelain sink difference</code>——NOZLOO 的对比文章<strong>上榜</strong>。
+            <code>fireclay farmhouse sink 33 inch buy</code>——NOZLOO <strong>首页零出现</strong>，
+            位置被 Signature Hardware、Sinkology、Bocchi、Nantucket、Home Depot、The Sink Boutique、
+            Magnus、CASAINC、Fossil Blu 等 10 个竞品占满。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            这说明博客的漏斗上层已经跑通，但流量传不到产品页。39 篇文章把人吸引进来，
+            成交页却接不住搜索需求本身。这是内容策略与商业目标之间的断层，不是内容质量问题。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            先修 H1 和 H2（标题截断 + 星级缺失）——这两项直接决定产品页在 SERP 的竞争力。
+            然后把 39 篇文章的内链系统性指向对应集合页与产品页，用信息型内容已有的权重去托举商业页。
+            集合页文案已经写得很扎实，缺的是内链密度。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么验证</span><span class="f-val">
+            跟踪 <code>/collections/33-inch-fireclay-farmhouse-sink</code> 与
+            <code>/collections/fireclay-farmhouse-sink</code> 在核心商业词上的平均排名。
+            三个月内进不了前 20，说明需要的是外链而不是站内优化。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding high">
+        <div class="f-head">
+          <span class="chip high">High</span>
+          <span class="f-title">作者署名削弱 E-E-A-T：39 篇文章挂在用户名和品牌名下</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            作者只有两个：<code>zhangsimon</code>（约 23 篇）和 <code>NOZ LOO</code>（约 16 篇）。
+            前者是账号用户名，后者是把品牌当人用。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            这些文章里有相当一部分给的是<strong>安装与管道施工建议</strong>——排水高度、P 型存水弯位置、
+            承重框架、台面开孔。Google 2025 年 9 月更新的质量评估指南对这类涉及居家施工风险的内容，
+            明确要求可核查的作者资质。<code>zhangsimon</code> 传达不出任何专业信号。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            建立 1–2 个真实署名作者，配作者页（资质、从业年限、联系方式），
+            在文章页输出 <code>author</code> 结构化数据并指向作者页。
+            安装类文章若有持证水管工审阅，标注审阅人比标注作者更有价值。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么验证</span><span class="f-val">
+            这项没有直接指标。观察安装类文章（<code>how-to-install-a-fireclay-farmhouse-sink</code>、
+            <code>farmhouse-sink-plumbing-rough-in</code>）在核心询问词上的排名，
+            六个月内无变化则说明作者信号不是这批页面的瓶颈。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding high">
+        <div class="f-head">
+          <span class="chip high">High</span>
+          <span class="f-title">内容自相残杀：四个主题簇内部重叠，最严重的是「陶土 vs 瓷/陶」三篇打架</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            四组重叠：<br>
+            <strong>① 材质对比（最严重）</strong> <code>fireclay-vs-ceramic-sink-differences</code>、
+            <code>fireclay-vs-porcelain-sink</code>、<code>fireclay-vs-cast-iron-vs-porcelain-sink</code>
+            ——对消费者而言 ceramic 与 porcelain 是同一个搜索意图，三篇争同一批词。<br>
+            <strong>② 该不该买</strong> pros-and-cons / worth-it / good-quality / buying-guide / before-you-buy，5 篇。<br>
+            <strong>③ 尺寸测量</strong> how-to-measure / cabinet-size / depth / 30-vs-33，4 篇 + 尺寸计算器页。<br>
+            <strong>④ 耐用性</strong> why-durable / science-behind / how-long-last / crack-easily / problems，5 篇。
+            其中 <code>why-fireclay-is-known-for-durability</code> 与 <code>the-science-behind-fireclay</code>
+            几乎是同一篇文章的两种写法（都在讲玻化、烧成温度、强度）。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            同簇文章互相稀释权重与内链，Google 需要自己挑一篇代表，挑中的往往不是转化最好的那篇。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            每簇选一篇作为支柱页做深做全，其余合并进去并 301 到支柱页。
+            优先处理簇 ① 和簇 ④ 里那对近似重复。全站已有 19 条重定向且管理得很规范，
+            合并动作对这个站来说是低风险操作。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么验证</span><span class="f-val">
+            合并前记录每簇各页的展现量。合并后支柱页的展现量应<strong>大于</strong>合并前各页之和；
+            若只是持平，说明这些页本来就没在互相抢，合并没有收益。
+          </span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ MEDIUM ============ -->
+  <section>
+    <h2>中优先级 · 一个月内处理</h2>
+    <div class="findings">
+
+      <div class="finding med">
+        <div class="f-head">
+          <span class="chip med">Medium</span>
+          <span class="chip verify">需验证</span>
+          <span class="f-title">品牌后缀可能被主题自动追加，导致 6 个「已控长度」的标题实际仍然超长</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            <code>fireclay-vs-porcelain-sink</code> 的 title 字段是
+            <code>Fireclay vs Porcelain Sink: Key Differences Explained</code>（53 字符，无品牌后缀），
+            但 Google SERP 显示的是 <code>…Explained – NOZLOO</code>。多出来的 <code>– NOZLOO</code> 不在字段里。
+          </span></div>
+          <div class="f-line"><span class="f-key">两种解释</span><span class="f-val">
+            <strong>(a)</strong> Shopify 主题按惯例在标题不含店名时追加 <code>– {{ shop.name }}</code>；
+            <strong>(b)</strong> Google 自行补了站点名。前者算进你的 60 字符预算，后者不算——
+            结论完全不同，而我无法抓取页面源码来区分。
+          </span></div>
+          <div class="f-line"><span class="f-key">如果是 (a)</span><span class="f-val">
+            那么 17 个「故意省掉后缀以节省字符」的标题会各自 +9 字符，
+            <strong>其中 6 个因此越过 60 字符线</strong>：functional-farmhouse-kitchen-design（60→69）、
+            offset-drain-kitchen-sink（59→68）、farmhouse-sink-with-butcher-block（57→66）、
+            how-to-measure（55→64）、single-vs-double-bowl（54→63）、fireclay-vs-porcelain（53→62）。
+            全站超长标题数量将从 9 涨到 15。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            查一下 <code>theme.liquid</code> 里 <code>&lt;title&gt;</code> 的输出逻辑，
+            看是否存在 <code>{% unless page_title contains shop.name %}</code> 这类判断。
+            一分钟就能确认，确认后再决定要不要动这 6 个标题。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding med">
+        <div class="f-head">
+          <span class="chip med">Medium</span>
+          <span class="f-title">4 个对象缺失 title 或 meta description</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            缺 title：<code>can-you-use-garbage-disposal-with-fireclay-sink</code>、
+            <code>are-farmhouse-sinks-still-in-style-in-2026</code>、<code>farmhouse-sink-reveal</code>。
+            <code>/pages/track-order</code> 两项<strong>都缺</strong>。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            前三篇会回退到文章标题，长度尚可、不算破损，但等于把 SERP 展示文案交给了默认值。
+            track-order 是纯功能页，本身就不该竞争排名。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            三篇文章补写 title。track-order 建议直接加 <code>noindex</code>，而不是补 meta——
+            它不该出现在搜索结果里。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding med">
+        <div class="f-head">
+          <span class="chip med">Medium</span>
+          <span class="f-title">页脚缺少全部信任页面的链接</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            页脚只有 6 项：Search、隐私选择、About、Contact、Support、Return Policy。
+            <strong>Warranty、Shipping Policy、Care &amp; Maintenance、FAQ、Blog、Sitemap 页全部不在页脚</strong>，
+            尽管这些页面都存在且 meta 写得很好。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            卖的是 $479–599、单件近 100 磅、走货运的商品。
+            「终身保修」和「运输/验收政策」是这类客单价下买家决策前必看的两页，
+            现在只能靠站内搜索找到。这既是转化损失，也是 E-E-A-T 信号损失和内链损失。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            页脚补上这 6 个链接。<code>/pages/warranty</code> 和 <code>/pages/shipping-policy</code> 优先。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding med">
+        <div class="f-head">
+          <span class="chip med">Medium</span>
+          <span class="f-title">空博客 <code>/blogs/news</code> 可被索引</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            店内有两个博客：<code>guides</code>（39 篇）和 <code>news</code>（<strong>0 篇</strong>）。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            删掉 <code>news</code> 博客。它是 Shopify 默认建的，从没用过，只会产出一个空的可索引归档页。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding med">
+        <div class="f-head">
+          <span class="chip med">Medium</span>
+          <span class="f-title"><code>/pages/reviews</code> 重定向到首页，属于软 404 模式</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            重定向规则 <code>/pages/reviews → /</code>。该页面本身状态为未发布，
+            但其 title 和 meta 都已写好（<code>NOZLOO Reviews | Fireclay Farmhouse Sink Reviews</code>）。
+          </span></div>
+          <div class="f-line"><span class="f-key">为什么</span><span class="f-val">
+            把一个具体页面重定向到首页，Google 通常判为软 404 并丢弃其权重。
+            更关键的是：站内已有 3 个产品带真实评价数据，却没有一个可索引的评价聚合页。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            两选一——把 reviews 页真正做起来并发布（配合 H2 的评价补齐），或改为 410 明确下线。
+            指向首页是三种做法里最差的一种。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding med">
+        <div class="f-head">
+          <span class="chip med">Medium</span>
+          <span class="f-title">URL 与目标关键词不一致：<code>ribbed</code> vs 文案里的 <code>fluted</code></span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            handle 是 <code>33-inch-ribbed-fireclay-farmhouse-workstation-sink</code>，
+            但商品名与 title 都用 <code>Fluted Apron</code>。术语在某次改版中漂移了，URL 留在旧词上。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            <strong>建议不改</strong>。URL 关键词是很弱的排名信号，而这个 handle 已经积累了外部链接
+            （旧 handle <code>nozloo-33-ribbed-…</code> 也已重定向到它）。
+            再改一次 URL 的风险大于收益。记录在案即可。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding med">
+        <div class="f-head">
+          <span class="chip med">Medium</span>
+          <span class="f-title">标签体系稀疏，产生单篇文章的薄归档页</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            <code>Value</code>、<code>Workstation</code>、<code>Durability</code> 三个标签各自只挂 1 篇文章；
+            另有 3 篇完全无标签（crack-easily、farmhouse-sink-vs-apron-sink、before-you-buy）。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            标签收敛到 4–5 个真正有量的分类（Buying Guide / Comparison / Material / Installation / Care），
+            单篇标签合并掉，并给无标签文章补上。
+          </span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ LOW ============ -->
+  <section>
+    <h2>低优先级 · 待办池</h2>
+    <div class="findings">
+
+      <div class="finding low">
+        <div class="f-head">
+          <span class="chip low">Low</span>
+          <span class="chip verify">需验证</span>
+          <span class="f-title">30" 沟槽款的渠道发布数异常：8 vs 其余 245–249</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            <code>resourcePublicationsCount</code>：30" 沟槽款为 <strong>8</strong>，
+            其余五款为 245–249。前 8 个渠道（Online Store、Shop、Google &amp; YouTube 等）六款完全一致，
+            差异出在后面的 catalog 层。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            去后台核对这款是否漏发到了某些市场目录。数字差得太整齐，不像正常配置差异。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding low">
+        <div class="f-head">
+          <span class="chip low">Low</span>
+          <span class="f-title"><code>productType</code> 六款全空</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">为什么影响有限</span><span class="f-val">
+            Shopify 标准分类法 <code>category</code> <strong>已正确设置</strong>为
+            <code>Hardware &gt; Plumbing &gt; Plumbing Fixtures &gt; Sinks &gt; Kitchen &amp; Utility Sinks &gt; Farmhouse Sinks</code>，
+            并且存在 <code>mm-google-shopping/google_product_category</code> 元字段。
+            主要的分类信号已经到位，<code>productType</code> 是旧字段，仅少数主题和 feed 属性会用。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            统一填 <code>Farmhouse Sink</code>，顺手的事。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding low">
+        <div class="f-head">
+          <span class="chip low">Low</span>
+          <span class="f-title">SKU 大小写不统一</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            <code>NZ105w3020</code>、<code>NZ103W3020</code>、<code>NZ103w3320d</code>、
+            <code>NZ3320T</code>、<code>nz103w3320</code>、<code>NZ3320S</code>——三种大小写风格混用。
+          </span></div>
+          <div class="f-line"><span class="f-key">怎么修</span><span class="f-val">
+            全部转大写。不影响 SEO，但影响 feed 匹配和跨系统对账。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding low">
+        <div class="f-head">
+          <span class="chip low">Low</span>
+          <span class="f-title">2 条 alt 文本是自动生成的残留</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            <code>NOZLOO 30" Grooved Apron … Workstation Kit (1)</code> 带着 <code>(1)</code> 后缀；
+            另一条与商品名完全相同。在约 50 条高质量 alt 里，这两条是仅有的例外。
+          </span></div>
+        </div>
+      </div>
+
+      <div class="finding low">
+        <div class="f-head">
+          <span class="chip low">Low</span>
+          <span class="f-title">2 条 meta description 略短</span>
+        </div>
+        <div class="f-body">
+          <div class="f-line"><span class="f-key">证据</span><span class="f-val">
+            FAQ 页 119 字符、Sitemap 页 117 字符，分别比 120 的下限少 1 和 3 个字符。
+            提出来只是为了让「62 条里 60 条达标」这个数据完整——实际影响为零。
+          </span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CREDITS ============ -->
+  <section>
+    <h2>已经做对的部分</h2>
+    <p class="dim">这些不是客套。审计里能看到的基础工程质量明显高于同规模独立站的平均水平，下面几项尤其值得保持。</p>
+    <div class="credits">
+      <div class="credit">
+        <b>19 条重定向零遗漏</b>
+        <span>每一次 handle 改动都有对应重定向，包括 SKU 式旧链接、集合单复数、博客改名。未发现重定向链。这是最容易出事也最少有人做全的一环。</span>
+      </div>
+      <div class="credit">
+        <b>meta description 60/62 达标</b>
+        <span>全部落在 120–160 字符窗口内，另外 2 条仅差 1–3 字符。这种一致性在 63 个对象的站点上很少见。</span>
+      </div>
+      <div class="credit">
+        <b>图片 alt 写得很实</b>
+        <span>约 50 张图，alt 具体到「30x20x10 英寸尺寸图」「装在鼠尾草绿厨房配木台面」。连尺寸示意图都做了描述。</span>
+      </div>
+      <div class="credit">
+        <b>集合页文案与实际库存同步</b>
+        <span>文案里写「六款」「四款」「两款」「五款」，与 productsCount 的 6/4/2/5 完全对得上。说明有人在维护而不是写完就扔。</span>
+      </div>
+      <div class="credit">
+        <b>内容选题诚实</b>
+        <span>「陶土水槽的 7 个问题」「优缺点实话」「公正对比不锈钢」——主动写负面角度，是 E-E-A-T 里最难伪造的信号。</span>
+      </div>
+      <div class="credit">
+        <b>单一美国市场，无 hreflang 负担</b>
+        <span>Rest of World 已停用。国际化是最容易配错的技术项，这里直接不存在这个风险面。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLAN ============ -->
+  <section>
+    <h2>执行顺序</h2>
+    <p class="dim">按依赖关系排序，不是按重要性。前三步互不依赖，可以并行。</p>
+    <div class="plan">
+
+      <div class="step">
+        <span class="step-n">01</span>
+        <span class="step-b">
+          <b>重写 6 个产品页 title 到 60 字符以内</b>
+          <span>唯一直接影响收入页 CTR 的改动，改动量最小，见效最快。</span>
+          <span class="step-dep">无依赖 · 约 30 分钟</span>
+        </span>
+      </div>
+
+      <div class="step">
+        <span class="step-n">02</span>
+        <span class="step-b">
+          <b>查清 3 款产品评价数据缺失的原因</b>
+          <span>先判断是真的没评价，还是 Judge.me 同步问题。若是前者，启动定向评价邀请——这条链路较长，越早开始越好。</span>
+          <span class="step-dep">无依赖 · 排查 1 小时，补齐视订单量而定</span>
+        </span>
+      </div>
+
+      <div class="step">
+        <span class="step-n">03</span>
+        <span class="step-b">
+          <b>检查 theme.liquid 的 title 输出逻辑</b>
+          <span>一分钟的检查，决定了另外 6 个标题要不要一起改。放在第 1 步之前做更省事。</span>
+          <span class="step-dep">无依赖 · 1 分钟</span>
+        </span>
+      </div>
+
+      <div class="step">
+        <span class="step-n">04</span>
+        <span class="step-b">
+          <b>页脚补齐 6 个链接，删除空的 news 博客，处理 /pages/reviews</b>
+          <span>一批低风险的技术清理，可以一次性做完。</span>
+          <span class="step-dep">无依赖 · 约 1 小时</span>
+        </span>
+      </div>
+
+      <div class="step">
+        <span class="step-n">05</span>
+        <span class="step-b">
+          <b>建立真实作者身份与作者页</b>
+          <span>需要先确定由谁署名——这是业务决策不是技术决策，所以排在纯执行项之后。安装类文章优先。</span>
+          <span class="step-dep">依赖：确定署名人选</span>
+        </span>
+      </div>
+
+      <div class="step">
+        <span class="step-n">06</span>
+        <span class="step-b">
+          <b>合并四个主题簇内的重复文章</b>
+          <span>动作最大、风险最高的一步，必须先有基线数据。执行前务必记录各页当前展现量，否则无法判断合并是否有效。</span>
+          <span class="step-dep">依赖：Search Console 基线数据（建议先跑 2 周）</span>
+        </span>
+      </div>
+
+      <div class="step">
+        <span class="step-n">07</span>
+        <span class="step-b">
+          <b>从 39 篇文章向集合页与产品页建立系统性内链</b>
+          <span>放在合并之后做，避免给即将被 301 掉的页面建内链，做无用功。</span>
+          <span class="step-dep">依赖：第 6 步完成</span>
+        </span>
+      </div>
+
+      <div class="step">
+        <span class="step-n">08</span>
+        <span class="step-b">
+          <b>放行 nozloo.com 后补测未覆盖的 20% 权重</b>
+          <span>Core Web Vitals、AI 搜索就绪度、robots/sitemap/canonical、渲染后的 JSON-LD。这些都需要真实抓取页面。</span>
+          <span class="step-dep">依赖：环境网络策略放行域名</span>
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ APPENDIX ============ -->
+  <section>
+    <h2>附录 · 超长标题全表</h2>
+    <p class="dim">阈值取 60 字符（约对应 Google 580px 的截断宽度）。按超出量降序。</p>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>类型</th><th>Title 标签</th><th>字符</th><th>超出</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>产品</td><td>30" Reversible Apron Fireclay Farmhouse Sink with Workstation Kit | NOZLOO</td><td class="num over">74</td><td class="num over">+14</td></tr>
+          <tr><td>产品</td><td>33" Glossy White Glaze Reversible Apron Fireclay Farmhouse Sink | NOZLOO</td><td class="num over">72</td><td class="num over">+12</td></tr>
+          <tr><td>产品</td><td>30" Grooved Apron Fireclay Farmhouse Sink with Workstation Kit | NOZLOO</td><td class="num over">71</td><td class="num over">+11</td></tr>
+          <tr><td>产品</td><td>33" Fluted Apron Fireclay Farmhouse Sink with Workstation Kit | NOZLOO</td><td class="num over">70</td><td class="num over">+10</td></tr>
+          <tr><td>产品</td><td>33" Smooth Apron Fireclay Farmhouse Sink with Workstation Kit | NOZLOO</td><td class="num over">70</td><td class="num over">+10</td></tr>
+          <tr><td>产品</td><td>33" Fireclay Double Bowl Farmhouse Sink with Workstation Kit | NOZLOO</td><td class="num over">69</td><td class="num over">+9</td></tr>
+          <tr><td>文章</td><td>How to Clean a Fireclay Sink Without Damaging the Finish | NOZLOO</td><td class="num over">65</td><td class="num over">+5</td></tr>
+          <tr><td>文章</td><td>Fireclay vs Stainless Steel Sink: An Honest Comparison | NOZLOO</td><td class="num over">63</td><td class="num over">+3</td></tr>
+          <tr><td>文章</td><td>30 vs 33 Inch Farmhouse Sink: Which Should You Choose? | NOZLOO</td><td class="num over">63</td><td class="num over">+3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:1.5rem">全站 meta 完整度</h3>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>指标</th><th>结果</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>已审计对象</td><td class="num">63</td><td>6 商品 + 4 集合 + 39 文章 + 14 页面</td></tr>
+          <tr><td>title 已设置</td><td class="num">59 / 63</td><td>4 个缺失</td></tr>
+          <tr><td>meta description 已设置</td><td class="num">62 / 63</td><td>1 个缺失（track-order）</td></tr>
+          <tr><td>title 超 60 字符</td><td class="num over">9 / 59</td><td>15%；若主题追加品牌名则为 15 / 59</td></tr>
+          <tr><td>description 在 120–160 区间</td><td class="num">60 / 62</td><td>另 2 条差 1–3 字符</td></tr>
+          <tr><td>URL 重定向</td><td class="num">19</td><td>覆盖全部 handle 变更，未发现链路</td></tr>
+          <tr><td>带评价数据的产品</td><td class="num over">3 / 6</td><td>影响星级富摘要</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    数据采集自 Shopify Admin GraphQL API 与 Google 搜索实测，2026-07-27。<br>
+    页面抓取通道被执行环境网络策略阻断，性能、AI 搜索就绪度、robots/sitemap/canonical 及渲染后结构化数据未纳入评分。<br>
+    分析框架基于 claude-seo v2.2.4（MIT）。
+  </footer>
+
+</div>

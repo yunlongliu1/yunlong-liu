@@ -1,8 +1,11 @@
 # claude-seo 运行时与输出产物（不入库）
+# /seo setup 会在技能目录内建隔离运行时，这些都是机器本地产物
+.claude/skills/seo/.venv/
+.claude/skills/seo/ms-playwright/
+.claude/skills/seo/runtime-state.json
+.claude/skills/seo/drift/
 .claude/skills/seo/**/__pycache__/
 .claude/skills/seo/**/*.pyc
-.claude/skills/seo/drift/
-.claude/skills/seo/.runtime/
 .claude/settings.local.json
 
 # 凭据 — 永不入库
