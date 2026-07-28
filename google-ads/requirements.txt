@@ -1,0 +1,3 @@
+# Google Ads API 官方 Python 客户端
+# 31.2.0 支持 API v21 ~ v25，默认使用 v25
+google-ads==31.2.0

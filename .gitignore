@@ -1,0 +1,12 @@
+# 凭据 —— 绝对不要提交
+.env
+*.env
+!.env.example
+google-ads.yaml
+client_secret*.json
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
