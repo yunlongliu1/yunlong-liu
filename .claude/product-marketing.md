@@ -45,6 +45,21 @@ Bocchi, Ruvati, Sinkology, Kraus, Signature Hardware, Kohler (Whitehaven) on bra
 - Comparison: "fireclay vs cast iron sink", "fireclay vs granite composite", "best farmhouse sink"
 - Informational (content/remarketing only, negative on Search): "how to clean fireclay sink", "fireclay sink problems", "farmhouse sink installation"
 
+## Account state snapshot (2026-07-01 → 07-28, diagnosed 2026-07-29)
+
+Google Ads: $2,277.53 spend, 152k impressions, 1,807 clicks ($1.26 avg CPC), reported 8 conversions / $569 value. Ten campaigns created/paused/removed within the month; active at snapshot: feed-only PMax $80/day on Max Conv Value + brand defense $5/day (only 20 impressions — brand query volume is near zero for the new brand). A "核心精确词" search campaign spent $723 at $2.54 CPC; a broad MCV search campaign bought a single $33 click.
+
+Shopify ground truth, same period: 6 orders, gross $3,194, **discounts -$1,238 (38.8% avg)**, zero returns, net $1,956. Sessions 5,085 → 52 add-to-cart (1.0%) → 26 reached checkout → **5 completed (19% checkout completion; store CVR 0.098%)**. Google-attributed: 1–2 orders ≈ $419 → true paid ROAS ≈ 0.2.
+
+Diagnosis, in priority order:
+
+1. **Conversion tracking broken** — 8 conv/$569 vs 6 orders/$1,956 means non-purchase events are counted as primary conversions and order values aren't syncing. All value-based smart bidding is training on garbage until fixed.
+2. **Store CVR 0.1%** vs the ~0.7% needed for ROAS 4 at ~$0.93 Shopping CPC (required CVR = 4 × CPC ÷ AOV). Funnel breaks worst at checkout (19% completion; benchmark 40–60%).
+3. **Discount discipline** — 39% average discount against a 25% contribution margin = selling below cost before ad spend.
+4. Structure thrash and PMax/MCV launched far below the playbook's data gates (30 conv/30d for MCV, 50 for tROAS).
+
+Agreed sequence: fix tracking → consolidate to brand defense + manual-CPC Standard Shopping (6 SKUs, CPC cap ~$1) with search paused or capped ≤$1.30 → CRO on checkout + reviews → re-enter smart bidding only at the volume gates.
+
 ## Known gaps / pre-launch action items
 
 1. **Feed quality:** Shopify products have empty `productType` and (mostly) no tags — thin Merchant Center feed signals. Set product type + Google category + material/size attributes in Shopify admin before scaling Shopping/PMax.
