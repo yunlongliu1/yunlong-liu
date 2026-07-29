@@ -53,6 +53,24 @@ Bocchi, Ruvati, Sinkology, Kraus, Signature Hardware, Kohler (Whitehaven) on bra
 4. **Reviews:** early-stage brand — enroll Google Customer Reviews / review syndication ASAP; stars gate Shopping CTR.
 5. Ad history, pixel/conversion state, and monthly budget: **unknown — ask before building.**
 
-## Working economics (fill in real numbers before setting tROAS)
+## Working economics (owner-confirmed 2026-07-29)
 
-- Breakeven ROAS = 1 / contribution margin (after COGS, freight — sinks are heavy, oversized-parcel or LTL shipping costs are material — fulfillment, payment fees). Factory-direct margin is the structural advantage; get the real number from the owner before bidding targets are set.
+- **Breakeven ROAS = 4.0** (owner-provided) → implied contribution margin ≈ 25% after COGS, freight (heavy/oversized parcels), fulfillment, and payment fees
+- **Blended MER floor = 4.0** — weekly blended revenue ÷ total ad spend must clear 4 or the account is losing money regardless of what platform ROAS claims
+
+Breakeven CPA by SKU (price ÷ 4):
+
+| SKU | Price | Max CPA at breakeven |
+|---|---|---|
+| 33" Reversible no-workstation (entry) | $479 | ~$120 |
+| 33" Smooth Apron (most-popular) | $519 | ~$130 |
+| 30" models | $549 | ~$137 |
+| 33" Fluted Workstation | $569 | ~$142 |
+| 33" Double Bowl | $599 | ~$150 |
+
+Operational translation (per the ecommerce playbook):
+
+- **tROAS targets:** breakeven 4.0 is the ceiling, not the goal. Once tROAS-eligible (50+ conv/30d), start at trailing-30d actual and ratchet toward an operating target of **4.5–5.0** so each sale carries real profit; only relax toward 4.0 deliberately, to buy volume when scaling.
+- **Kill rule instantiated:** a campaign/SKU below ROAS 4 after ~**$400 spend** (≈3× breakeven CPA) with no assisted/micro-conversion signal and no fixable feed cause → kill.
+- **Max CPC sanity check:** max CPC = breakeven CPA × CVR. At ~$130 CPA: 1.0% CVR → $1.30 max CPC; 0.7% → ~$0.90; 1.5% (warm/brand) → ~$1.95. Cold-traffic CVR on a $500 considered purchase typically runs under 1% — expect non-brand CPCs to need tight keyword selection to pencil, and lean on remarketing (much higher CVR) to lift the blend.
+- 25% margin means **no discount-led promos without re-doing this math** — a 10% discount drops breakeven ROAS to ~6.7. Prefer value adds (free accessories/workstation kit) over price cuts.
