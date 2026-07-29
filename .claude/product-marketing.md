@@ -65,8 +65,12 @@ Agreed sequence: consolidate to brand defense $5/day + manual-CPC Standard Shopp
 1. **Feed quality:** Shopify products have empty `productType` and (mostly) no tags — thin Merchant Center feed signals. Set product type + Google category + material/size attributes in Shopify admin before scaling Shopping/PMax.
 2. **GTIN:** confirm whether SKUs have GTINs; if not, set `identifier_exists` properly so serving isn't suppressed.
 3. **Inventory-aware ads:** 3 SKUs sit at ~11–12 units — keep low-stock SKUs out of PMax listing groups or set alerts (see ecommerce playbook, inventory discipline).
-4. **Reviews:** early-stage brand — enroll Google Customer Reviews / review syndication ASAP; stars gate Shopping CTR.
-5. Ad history, pixel/conversion state, and monthly budget: **unknown — ask before building.**
+4. **Reviews:** Judge.me IS installed (verified via product metafields 2026-07-29); hero SKU rates 5.0 but with only **2 reviews** — the gap is volume, not tooling. Enable Judge.me→Google product-ratings syndication and post-purchase review emails.
+5. Payments: Shop Pay, Apple Pay, Google Pay wallets enabled (Admin API) — verify Shop Pay Installments "$/mo" actually renders on PDP/checkout.
+6. Feed app present (`mm-google-shopping` metafields incl. google_product_category) — verify sync in Merchant Center rather than assuming the thin productType field means a thin feed.
+7. Note: this Claude session's egress policy blocks direct fetches of nozloo.com, so on-page/checkout walkthroughs must be done by a human or a session with network access to the domain.
+
+Operational runbook: [docs/google-ads-shopping-restart.md](../docs/google-ads-shopping-restart.md) — two-campaign restart structure, per-SKU bids, negatives, weekly ritual, upgrade gates.
 
 ## Working economics (owner-confirmed 2026-07-29)
 
