@@ -49,16 +49,16 @@ Bocchi, Ruvati, Sinkology, Kraus, Signature Hardware, Kohler (Whitehaven) on bra
 
 Google Ads: $2,277.53 spend, 152k impressions, 1,807 clicks ($1.26 avg CPC), reported 8 conversions / $569 value. Ten campaigns created/paused/removed within the month; active at snapshot: feed-only PMax $80/day on Max Conv Value + brand defense $5/day (only 20 impressions — brand query volume is near zero for the new brand). A "核心精确词" search campaign spent $723 at $2.54 CPC; a broad MCV search campaign bought a single $33 click.
 
-Shopify ground truth, same period: 6 orders, gross $3,194, **discounts -$1,238 (38.8% avg)**, zero returns, net $1,956. Sessions 5,085 → 52 add-to-cart (1.0%) → 26 reached checkout → **5 completed (19% checkout completion; store CVR 0.098%)**. Google-attributed: 1–2 orders ≈ $419 → true paid ROAS ≈ 0.2.
+Shopify same period: 6 orders on the books, but **owner-confirmed only 4 are real — 3 organic (~$1,537) + 1 from ads ($419); the other 2 were internal test orders** (fully discounted, ≈$1,138 of the -$1,238 "discounts" — real-customer discounting is only ~5%, i.e. real buyers pay near list price). Sessions 5,085 → 52 add-to-cart (1.0%) → 26 reached checkout → 5 completed incl. tests → **real store CVR ≈ 0.08%; real checkout completion ≈ 15%** (benchmark 40–60%). True paid ROAS ≈ 0.18 (1,807 ad clicks → 1 order).
 
-Diagnosis, in priority order:
+Diagnosis, in priority order (tracking is NOT broken — owner confirmed):
 
-1. **Conversion tracking broken** — 8 conv/$569 vs 6 orders/$1,956 means non-purchase events are counted as primary conversions and order values aren't syncing. All value-based smart bidding is training on garbage until fixed.
-2. **Store CVR 0.1%** vs the ~0.7% needed for ROAS 4 at ~$0.93 Shopping CPC (required CVR = 4 × CPC ÷ AOV). Funnel breaks worst at checkout (19% completion; benchmark 40–60%).
-3. **Discount discipline** — 39% average discount against a 25% contribution margin = selling below cost before ad spend.
+1. **Store CVR ≈ 0.08%** vs the ~0.7% needed for ROAS 4 at ~$0.93 Shopping CPC (required CVR = 4 × CPC ÷ AOV). Organic converts at ~0.09% too — the bottleneck is the site, not traffic quality. Worst break: checkout completion ~15%.
+2. **Trust, not price, is the barrier** — real customers pay near list, so fix reviews/stars, financing (Shop Pay Installments), shipping-time and warranty display at checkout; do NOT discount (at 25% margin a 10%-off promo pushes breakeven ROAS to ~6.7).
+3. **Config hygiene in Google Ads:** verify what the 8 reported "conversions" are — keep Purchase as the only primary (bidding signal), micro-events secondary; exclude internal/test traffic (one $0 test order already got attributed to google).
 4. Structure thrash and PMax/MCV launched far below the playbook's data gates (30 conv/30d for MCV, 50 for tROAS).
 
-Agreed sequence: fix tracking → consolidate to brand defense + manual-CPC Standard Shopping (6 SKUs, CPC cap ~$1) with search paused or capped ≤$1.30 → CRO on checkout + reviews → re-enter smart bidding only at the volume gates.
+Agreed sequence: consolidate to brand defense $5/day + manual-CPC Standard Shopping "6SKU逐个出价" revived at $40–60/day (CPC cap ~$1), search paused or capped ≤$1.30, PMax paused until gates → CRO on checkout + reviews as the main battlefield → re-enter smart bidding only at the volume gates. Budget ceiling $50–70/day until real CVR clears ~0.5%.
 
 ## Known gaps / pre-launch action items
 
